@@ -275,7 +275,7 @@ This does not exclude other work environments or even private computers, as any 
 \section{Research questions}\label{research:questions}
 \begin{enumerate}
 \item Can incorporating periodic authentication into a continuous authentication system for keystroke
-dynamics significantly improve imposter detection accuracy?
+dynamics significantly improve the original system's imposter detection accuracy?
 %\item Can extending a continuous authentication system with periodic authentication significantly improve imposter detection accuracy?
 \begin{enumerate}
 \item Which incorporated PA system leads to the best results in terms of accuracy?
@@ -306,11 +306,11 @@ dynamics significantly improve imposter detection accuracy?
 %\end{enumerate}
 
 \section{Planned contributions}
-The intention of this master thesis is to propose a new hybrid authentication method for free-text keystroke dynamics with better accuracy than similar research.
+The intended contribution of this project is to extend an existing CA system with a PA system in order to improve the imposter detection accuracy of the original system.
 The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystrokes on average. 
 Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user is wrongfully detected as being an imposter after 16057 keystrokes on average.
 By incorporating a PA system into the CA system, the aim is to improve these performance rates while keeping computational costs low enough to be used transparently on computers with the computational power of an average household laptop.
-The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, rather than using an entire PA system as it is described by its original authors.
+The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, as opposed to using an entire PA system as it is described by its original authors.
 %\\\\
 %---------------------
 %\\\\
@@ -331,8 +331,9 @@ The PA system to be incorporated into the CA system is more likely to consist of
 %\end{enumerate}
 
 \chapter{Related work (3-10 pages)}
+\label{chap:related}
 This chapter aims to describe the literature relevant to the project.
-
+Before presenting the relevant PA literature, the CA system to be extended is described in \cref{sec:related-CA} in order to allow for further discussions on what PA techniques may fit the CA system.
 
 \section{Continuous authentication}
 \label{sec:related-CA}
@@ -353,19 +354,31 @@ For keystroke action classification, Mondal followed a machine learning approach
 The first statistical approach (SA-1) used Scaled Euclidian Distance (SED) for \textit{Single Key Actions} and a combination of SED and Correlation Distance for \textit{Key Digraph Actions} for calculating the classification score to be used in the DTM. 
 The second statistical approach (SA-2) used the same distance metrics, but converted the distances into the classification score using fuzzy logic.
 In the machine learning approach, an \textit{Artificial Neural Network}, a \textit{Counter-Propagation Artificial Neural Network} and a \textit{Support Vector Machine} were combined in a \textit{Multi-Classifier Fusion} architecture \cite{mondal}. It is also worth mentioning that Bours used Scaled Manhattan Distance in his research \cite{BOURS201236}.
-
+%NOTE: really best results? see below here
 The best results were achieved by using the machine learning approach and training the classifier with data from the genuine user, and from a set of imposter users.
 Testing was done with data from the genuine user which was not used for training and with data from the remaining imposters not involved in training.
 This scenario is applicable in many cases, including the use on personal computers, as it shows the performance when imposters are not other users of the same system.
 The result achieved was an Average Number of Genuine Actions (ANGA) rating of 16057 and an Average Number of Imposter Actions (ANIA) rating of 499, with 1.3\% of imposters not being detected.
 Compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, it is clear that the machine learning approach was superior for the dataset used.
 
+The dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
+The data was collected in a completely \textit{uncontrolled} manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
+They were not given any specific task, ensuring that the collected data represented the participants' natural behavior.
+
+This dataset will be used for testing the CA and PA combination, although the recorded mouse activity will not be utilized as mouse dynamics is beyond the scope of the project. 
+An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
+That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, which is a sufficient amount of data seen in relation to datasets used in PA studies.
+Examples of such datasets will be described in \Cref{sec:related-other}.
+%NOTE: Are these datasets described?
+
 \section{Periodic authentication}
+\label{sec:related-other}
 There is a significant amount of available literature on PA systems.
 Discussing it all is beyond the scope of this project plan. The focus will therefore mostly be on research achieving viable results using free-text authentication and having potential for being incorporated into the CA system.
 This section will present the various options available to us from literature regarding methods used for PA.
+
 A more extensive and detailed literature study is being delivered in IMT4215 Specialization Project.
-The literature discussed in this section refer to their own solutions as CA, however we will refer to them as PA due to the reason stated in \autoref{sec:topic}.
+The literature discussed in this section refer to their own solutions as CA, however we will refer to them as PA due to the reason stated in \Cref{sec:topic}.
 
 \subsection{Classification}
 One of the most cited articles on PA systems was written by Gunetti and Picardi \cite{gunettiPicardi} and published in 2005.
@@ -374,7 +387,7 @@ Their solution is interesting due to how it accounts for variation in genuine us
 If a genuine user for some reason types slower than usual, for instance due to cold fingers, their typing pattern is likely to stay relatively similar to the regular pattern, only at a slower speed.
 The relative distance accounts for when comparing a probe sample to a reference sample, and is used in combination with the absolute distances of speed between the samples.
 Other researchers have also built their own authentication systems based on the A and R distances \cite{Kolakowska2011, Messerman, meaningless, prettyBadPaper, Davoudi1, Davoudi2, superResults}.
-Other measures were also compared in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
+Other measures were also applied in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
 %NOTE: Kolakowska not present in specialization project?
 
 Machine learning has also been utilized in recent years, with with some of the research presenting promising results.
@@ -389,9 +402,6 @@ If a user types a digraph to be used for authentication which was never recorded
 
 \section{Overview}
 
-Following is a (very) temporary version of what the state of the art overview table may look like.
-This will be gradually extended as I write about more papers.
-This is mostly just to show what types of information is to be included in the final version.
 %\begin{table}[h]
 %\begin{tabular}{ |c|c|c|c|p{1.5cm}|p{2.1cm}|p{2cm}|c| } 
 % \hline
@@ -414,34 +424,34 @@ This is mostly just to show what types of information is to be included in the f
 
 
 
-\newpage
-
-The purpose of this chapter
-is to explain to the reader what knowledge is already
-available from the literature.
-
-The purpose of the related work chapter is to:
-\begin{itemize}
-\item Identify to what extent information identified in the 'Research questions'  section is provided in the literature.
-\item Give an overview of why/how the literature provides the answer to the research questions identified.
-\item Identify areas/ research questions where the literature appears to be weak or non-existent.
-\end{itemize}
-The Related Work Chapter is NOT:
-\begin{itemize}
-\item   A list of abstracts and summaries of more-or-less-relevant literature.
-\end{itemize}
-If you have
-\begin{itemize}
-\item   found some relevant literature
-\item   made summaries of what you have written
-\end{itemize}
-you should
-\begin{itemize}
-\item reorganize these summaries to focus on the research questions you have identified.
-\end{itemize}
-
-This chapter should include one subsection for each of the research
-questions identified in section \ref{research:questions}.  
+%\newpage
+%
+%The purpose of this chapter
+%is to explain to the reader what knowledge is already
+%available from the literature.
+%
+%The purpose of the related work chapter is to:
+%\begin{itemize}
+%\item Identify to what extent information identified in the 'Research questions'  section is provided in the literature.
+%\item Give an overview of why/how the literature provides the answer to the research questions identified.
+%\item Identify areas/ research questions where the literature appears to be weak or non-existent.
+%\end{itemize}
+%The Related Work Chapter is NOT:
+%\begin{itemize}
+%\item   A list of abstracts and summaries of more-or-less-relevant literature.
+%\end{itemize}
+%If you have
+%\begin{itemize}
+%\item   found some relevant literature
+%\item   made summaries of what you have written
+%\end{itemize}
+%you should
+%\begin{itemize}
+%\item reorganize these summaries to focus on the research questions you have identified.
+%\end{itemize}
+%
+%This chapter should include one subsection for each of the research
+%questions identified in section \ref{research:questions}.  
 %
 %\section{Handling Potential problems}
 %When searching for literature, you usually get too many hits or none at all...
@@ -479,16 +489,32 @@ questions identified in section \ref{research:questions}.
 %\end{enumerate}
 
 \chapter{Choice of methods (2-5 pages)}
-This section is to include a description of the methods to be used,
-including references to literature describing the methods to be used
-(e.g. qualitative, quantitative, interviews, surveys,
-questionnaire,  model building etc.)
-For each of the research questions to be addressed,
-the chapter is to explain why the method is
-\begin{itemize}
-\item appropriate
-\item likely to provide the desired knowledge/information.
-\end{itemize}
+\section{Literature study}
+Even though a literature study already has been performed on the topic, the project period will begin with an additional literature study.
+The existing researches will be reviewed in more extensive detail, applying the knowledge which has already been gained to decide exactly which PA techniques will be used in the project.
+The techniques to be used must also be well understood before implementing them.
+Especially the machine learning algorithms to be used will require more studying, due to inexperience with these.
+Furthermore, as periodic authentication based on keystroke dynamics is an active research field, new studies may have been published which were not already covered in this document.
+
+
+\section{Implementing CA statistical approach}
+
+As mentioned in \cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, which means that no data collection will be performed.
+Therefore, when the literature study is completed, the next activity will be to implement the first statistical approach (SA-1) from Mondal's experiments.
+
+
+
+
+%This section is to include a description of the methods to be used,
+%including references to literature describing the methods to be used
+%(e.g. qualitative, quantitative, interviews, surveys,
+%questionnaire,  model building etc.)
+%For each of the research questions to be addressed,
+%the chapter is to explain why the method is
+%\begin{itemize}
+%\item appropriate
+%\item likely to provide the desired knowledge/information.
+%\end{itemize}
 
 
 \chapter{Milestones, deliverables and resources (2-5 pages)}
