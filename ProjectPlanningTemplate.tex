@@ -40,6 +40,7 @@
 \usepackage{hhline}
 \usepackage{pgfgantt}
 \usepackage{lscape}
+\usepackage{cleveref}
 
 \def\UrlFont{\tt}
 
@@ -164,7 +165,7 @@ Previous research on PD is referred to as \textit{continuous authentication} by 
 
 A great benefit to CA is that the system can make decisions instantly, whereas impostors have time to perform a certain amount of potentially harmful actions in-between checks in PA systems.
 On the other hand, CA can not take advantage of statistical analysis as PA systems can.
-Therefore, this goal of this project is to extend an existing CA system with a PA system in hopes of eliminating the inherent disadvantages of both systems as well as significantly improving detection rates.
+Therefore, the goal of this project is to extend an existing CA system with a PA system in hopes of eliminating the inherent disadvantages of both types of systems as well as significantly improving detection rates.
 
 
 % This section specifies the general area of the project.
@@ -209,15 +210,15 @@ Behavioral biometrics; keystroke dynamics; continuous authentication; periodic a
 To the best of our knowledge, there has been no research conducted on combining CA and PA for keystroke dynamics.
 Because of this, the drawbacks of both types of systems are present in recent literature.
 As stated earlier, a drawback to PA systems is that there is a window of time where an imposter can use the system before the next authentication is performed.
-Most of the existing PA system need several hundreds to over one thousand keystrokes for every periodic check.
+Most of the existing PA systems need several hundreds to over one thousand keystrokes for every periodic check.
 This leaves the imposter with too much freedom to roam before the authentication process is triggered.
 
-These systems also have varying accuracy.
-Many systems report their accuracy using False Accept Rate (FAR) and False Reject Rate (FRR).
-These rates also vary, but they tend to stay below 1\% FAR and around 5\% FRR.
+These PA systems also have varying performance.
+Many systems report their accuracy using False Accept Rate (FAR) and False Reject Rate (FRR), though I will refer to the rates as False Match Rate (FMR) and False Non-Match Rate (FNMR), as these are the correct terms for algorithm-level performance rates according to the ISO/IEC 2382-37 standard.
+While these rates vary between systems, but they tend to stay below 1\% FAR and around 5\% FRR.
 These numbers are only given meaning when seen in combination with the number of keystrokes needed per authentication.
 If the authentication is performed every 1000 keystrokes, 5\% FRR can be acceptable, as this would not result in many false rejections per day.
-However, if the authentication is triggered at shorter intervals, the genuine is rejected and logged out so frequently that the PA system becomes a nuisance.
+However, if the authentication is triggered at shorter intervals, the genuine user is rejected and logged out so frequently that the PA system becomes a nuisance.
 
 The problem with CA systems is that they need to base their decisions on very little amount of information about the current user's typing pattern.
 Every action is continuously classified as an imposter action or a genuine action, and only takes into account the last few keystrokes recorded per decision.
@@ -242,12 +243,12 @@ That means that CA systems are not able to rely on statistics from the current u
 %\end{enumerate}
 
 \section{Justification, motivation and benefits}
-While many systems and applications relies on login processes for authenticating users, most systems do not perform further authentication to ensure that the current user has not changed since logging in.
+While many systems and applications rely on login processes for authenticating users, most systems do not perform further authentication to ensure that the current user has not changed since logging in.
 Physically leaving an unlocked computer unattended is not an uncommon practice in many work environments, which opens up for free and unauthorized access by anyone seeing the opportunity.
 The longer the genuine user is absent, the more time unauthorized users have to access information or cause damage to any part of the system.
 Restricting the amount of actions intruders can perform is therefore needed in order to reduce the damage potential.
 
-By achieving positive results in terms of accuracy and performance, this project has the potential to increase the practical usability of free-text keystroke dynamics in industries and sectors where a higher level of information security is needed or desired, such as the health sector or other critical infrastructures.
+By achieving positive results in terms of accuracy and performance, this project has the potential to increase the practical usability of free-text keystroke dynamics in industries and sectors where a higher level of security is needed or desired, such as the health sector or other critical infrastructures.
 This does not exclude other work environments or even private computers, as any owner of a system with sensitive and/or confidential information could benefit from imposters being automatically detected and locked out by typing on the keyboard.
 
 
@@ -305,10 +306,11 @@ dynamics significantly improve imposter detection accuracy?
 %\end{enumerate}
 
 \section{Planned contributions}
-The itention of this master thesis is to provide a new hybrid authentication method for free-text keystroke dynamics with better accuracy than similar research.
-The CA system to be extended has an Average Number of Imposter Actions (ANIA) rate of x, and an Average Number of Genuine Actions (ANGA) rate of y [reference].
-By incorporating a PA system into the CA system, the aim is to improve the ANIA and ANGA rates while keeping computational costs low enough to be used transparently on computers with the power of an average household laptop.
-There is also a possibility of developing a method for periodic authentication by combining techniques from different existing research.
+The intention of this master thesis is to propose a new hybrid authentication method for free-text keystroke dynamics with better accuracy than similar research.
+The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystrokes on average. 
+Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user is wrongfully detected as being an imposter after 16057 keystrokes on average.
+By incorporating a PA system into the CA system, the aim is to improve these performance rates while keeping computational costs low enough to be used transparently on computers with the computational power of an average household laptop.
+The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, rather than using an entire PA system as it is described by its original authors.
 %\\\\
 %---------------------
 %\\\\
@@ -329,7 +331,11 @@ There is also a possibility of developing a method for periodic authentication b
 %\end{enumerate}
 
 \chapter{Related work (3-10 pages)}
+This chapter aims to describe the literature relevant to the project.
+
+
 \section{Continuous authentication}
+\label{sec:related-CA}
 The CA system to be extended was a part of the doctoral thesis of Soumik Mondal \cite{mondal}, where a \textit{trust model} was used to lock imposters out.
 Similarly to \cite{BOURS201236}, Mondal's trust model worked by comparing the typed key or digraph to the user's template and having the result impact the current \textit{trust level} by means of a penalty-and-reward system.
 After the initial static authentication, the user's trust level was set to 100, being the highest achievable level.
@@ -351,7 +357,7 @@ In the machine learning approach, an \textit{Artificial Neural Network}, a \text
 The best results were achieved by using the machine learning approach and training the classifier with data from the genuine user, and from a set of imposter users.
 Testing was done with data from the genuine user which was not used for training and with data from the remaining imposters not involved in training.
 This scenario is applicable in many cases, including the use on personal computers, as it shows the performance when imposters are not other users of the same system.
-The result achieved was an ANGA rating of 16057 and an ANIA rating of 499, with 1.3\% of imposters not being detected.
+The result achieved was an Average Number of Genuine Actions (ANGA) rating of 16057 and an Average Number of Imposter Actions (ANIA) rating of 499, with 1.3\% of imposters not being detected.
 Compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, it is clear that the machine learning approach was superior for the dataset used.
 
 \section{Periodic authentication}
@@ -369,6 +375,7 @@ If a genuine user for some reason types slower than usual, for instance due to c
 The relative distance accounts for when comparing a probe sample to a reference sample, and is used in combination with the absolute distances of speed between the samples.
 Other researchers have also built their own authentication systems based on the A and R distances \cite{Kolakowska2011, Messerman, meaningless, prettyBadPaper, Davoudi1, Davoudi2, superResults}.
 Other measures were also compared in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
+%NOTE: Kolakowska not present in specialization project?
 
 Machine learning has also been utilized in recent years, with with some of the research presenting promising results.
 An example of this is Ahmed and Traore's work from 2007 \cite{Ahmed}, who used neural networks for classification.
@@ -385,21 +392,21 @@ If a user types a digraph to be used for authentication which was never recorded
 Following is a (very) temporary version of what the state of the art overview table may look like.
 This will be gradually extended as I write about more papers.
 This is mostly just to show what types of information is to be included in the final version.
-\begin{table}[h]
-\begin{tabular}{ |c|c|c|c|p{1.5cm}|p{2.1cm}|p{2cm}|c| } 
- \hline
- \bf Paper & \bf Block & \bf Users & \bf Uncontr. & \bf Method & \bf Perf. & \bf Notes & n-graphs\\ \hline
- \bf Messerman & 50 - 150 & 55 & Webmail & R\&A &  FAR 2.02\% FRR 1.84\% & adaptive user model & \\ \hline
- \bf Ferreira & 250 & 60 & Yes & R\&A & EER 1.4\% & Updates user profile, also triggers authentication asynch & \\ \hline
- Davoudi(2) & & & & & & & \\ \hline
- %Singh &- & - & - & - & - & STATIC AUTHENT. DONT BOTHER & \\ \hline
- Kaneko & ~200 & 51 & No & Euclidian & 0.66\% EER & Static fixed text, jap. & di \\ \hline
- Ahmed & 500 & 53 & Yes & Neural Networks & FAR 0.0152\% FRR 4.82\% ERR 2.45\% & & mono di\\\hline
- Gunetti & 800 & 40 & Webform & R\&A & FAR 0.005\% FRR 4.833\% & & 2,3,4\\ \hline
- \bf Hu et al. & 36 & 19 & Webform & R\&A, k-NN & FAR 0.045\% FRR 0.005\% & Static text & - \\ \hline
- 
-\end{tabular}
-\end{table}
+%\begin{table}[h]
+%\begin{tabular}{ |c|c|c|c|p{1.5cm}|p{2.1cm}|p{2cm}|c| } 
+% \hline
+% \bf Paper & \bf Block & \bf Users & \bf Uncontr. & \bf Method & \bf Perf. & \bf Notes & n-graphs\\ \hline
+% \bf Messerman & 50 - 150 & 55 & Webmail & R\&A &  FAR 2.02\% FRR 1.84\% & adaptive user model & \\ \hline
+% \bf Ferreira & 250 & 60 & Yes & R\&A & EER 1.4\% & Updates user profile, also triggers authentication asynch & \\ \hline
+% Davoudi(2) & & & & & & & \\ \hline
+% %Singh &- & - & - & - & - & STATIC AUTHENT. DONT BOTHER & \\ \hline
+% Kaneko & ~200 & 51 & No & Euclidian & 0.66\% EER & Static fixed text, jap. & di \\ \hline
+% Ahmed & 500 & 53 & Yes & Neural Networks & FAR 0.0152\% FRR 4.82\% ERR 2.45\% & & mono di\\\hline
+% Gunetti & 800 & 40 & Webform & R\&A & FAR 0.005\% FRR 4.833\% & & 2,3,4\\ \hline
+% \bf Hu et al. & 36 & 19 & Webform & R\&A, k-NN & FAR 0.045\% FRR 0.005\% & Static text & - \\ \hline
+% 
+%\end{tabular}
+%\end{table}
 
 %Machine learning
 
@@ -407,34 +414,34 @@ This is mostly just to show what types of information is to be included in the f
 
 
 
+\newpage
 
+The purpose of this chapter
+is to explain to the reader what knowledge is already
+available from the literature.
 
-%The purpose of this chapter
-%is to explain to the reader what knowledge is already
-%available from the literature.
-%
-%The purpose of the related work chapter is to:
-%\begin{itemize}
-%\item Identify to what extent information identified in the 'Research questions'  section is provided in the literature.
-%\item Give an overview of why/how the literature provides the answer to the research questions identified.
-%\item Identify areas/ research questions where the literature appears to be weak or non-existent.
-%\end{itemize}
-%The Related Work Chapter is NOT:
-%\begin{itemize}
-%\item   A list of abstracts and summaries of more-or-less-relevant literature.
-%\end{itemize}
-%If you have
-%\begin{itemize}
-%\item   found some relevant literature
-%\item   made summaries of what you have written
-%\end{itemize}
-%you should
-%\begin{itemize}
-%\item reorganize these summaries to focus on the research questions you have identified.
-%\end{itemize}
-%
-%This chapter should include one subsection for each of the research
-%questions identified in section \ref{research:questions}.  
+The purpose of the related work chapter is to:
+\begin{itemize}
+\item Identify to what extent information identified in the 'Research questions'  section is provided in the literature.
+\item Give an overview of why/how the literature provides the answer to the research questions identified.
+\item Identify areas/ research questions where the literature appears to be weak or non-existent.
+\end{itemize}
+The Related Work Chapter is NOT:
+\begin{itemize}
+\item   A list of abstracts and summaries of more-or-less-relevant literature.
+\end{itemize}
+If you have
+\begin{itemize}
+\item   found some relevant literature
+\item   made summaries of what you have written
+\end{itemize}
+you should
+\begin{itemize}
+\item reorganize these summaries to focus on the research questions you have identified.
+\end{itemize}
+
+This chapter should include one subsection for each of the research
+questions identified in section \ref{research:questions}.  
 %
 %\section{Handling Potential problems}
 %When searching for literature, you usually get too many hits or none at all...
