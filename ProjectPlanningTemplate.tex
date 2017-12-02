@@ -152,8 +152,16 @@ The abstract of the project description
 
 \section{Topic covered by the project}
 \label{sec:topic}
-This thesis revolves around the research area of keystroke dynamics, which is an area within behavioral biometrics.
-While physical biometrics is now widely embedded in our everyday lives such as fingerprint and lately face recognition in our smart phones, we can also be identified by the way we behave.
+When a person attempts to access certain resources or systems, they may need to verify that they are in fact authorized to do so, often through an authentication mechanism.
+Authentication is the act of verifying that the current user matches the identity they are claiming ownership of.
+After claiming an identity, for example by providing a username, the current user may support their claim by presenting something only the true owner of the identity is supposed to \textit{know} or \textit{have}.
+This could for example be a password or a token such as a key card.
+The user may also give a representation of what they \textit{are}, which bring us to the topic of \textit{biometrics}.
+
+
+%This thesis revolves around the research area of keystroke dynamics, which is an area within behavioral biometrics.
+
+While biological biometrics is now widely embedded in our everyday lives such as fingerprint and lately face recognition in our smart phones, we can also be identified by the way we behave.
 Every individual has their own way of typing on computer keyboards, and this can be taken advantage of by authenticating users based on keystroke dynamics.
 This way, even after a user is logged into a given system using \textit{static authentication} such as providing a username and a password, they can continue being authenticated by a background process after the initial log-in.
 
@@ -215,9 +223,9 @@ This leaves the imposter with too much freedom to roam before the authentication
 
 These PA systems also have varying performance.
 Many systems report their accuracy using False Accept Rate (FAR) and False Reject Rate (FRR), though I will refer to the rates as False Match Rate (FMR) and False Non-Match Rate (FNMR), as these are the correct terms for algorithm-level performance rates according to the ISO/IEC 2382-37 standard.
-While these rates vary between systems, but they tend to stay below 1\% FAR and around 5\% FRR.
+While these rates vary between systems, but they tend to stay below 1\% FMR and around 5\% FNMR.
 These numbers are only given meaning when seen in combination with the number of keystrokes needed per authentication.
-If the authentication is performed every 1000 keystrokes, 5\% FRR can be acceptable, as this would not result in many false rejections per day.
+If the authentication is performed every 1000 keystrokes, 5\% FNMR can be acceptable, as this would not result in many false non-matches per day.
 However, if the authentication is triggered at shorter intervals, the genuine user is rejected and logged out so frequently that the PA system becomes a nuisance.
 
 The problem with CA systems is that they need to base their decisions on very little amount of information about the current user's typing pattern.
@@ -353,23 +361,28 @@ Therefore, an action with a classification score just below the threshold separa
 For keystroke action classification, Mondal followed a machine learning approach and two statistical approaches.
 The first statistical approach (SA-1) used Scaled Euclidian Distance (SED) for \textit{Single Key Actions} and a combination of SED and Correlation Distance for \textit{Key Digraph Actions} for calculating the classification score to be used in the DTM. 
 The second statistical approach (SA-2) used the same distance metrics, but converted the distances into the classification score using fuzzy logic.
-In the machine learning approach, an \textit{Artificial Neural Network}, a \textit{Counter-Propagation Artificial Neural Network} and a \textit{Support Vector Machine} were combined in a \textit{Multi-Classifier Fusion} architecture \cite{mondal}. It is also worth mentioning that Bours used Scaled Manhattan Distance in his research \cite{BOURS201236}.
+In the machine learning approach, an \textit{Artificial Neural Network}, a \textit{Counter-Propagation Artificial Neural Network} and a \textit{Support Vector Machine} were combined in a \textit{Multi-Classifier Fusion} architecture \cite{mondal}. It is also worth mentioning that Bours used Scaled Manhattan Distance in his CA research \cite{BOURS201236}.
 %NOTE: really best results? see below here
-The best results were achieved by using the machine learning approach and training the classifier with data from the genuine user, and from a set of imposter users.
+
+The overall best machine learning results were achieved by training the classifier with data from the genuine user and from a set of imposter users, which in the original study \cite{mondal} was called Verification Process 3 (VP-3).
 Testing was done with data from the genuine user which was not used for training and with data from the remaining imposters not involved in training.
 This scenario is applicable in many cases, including the use on personal computers, as it shows the performance when imposters are not other users of the same system.
-The result achieved was an Average Number of Genuine Actions (ANGA) rating of 16057 and an Average Number of Imposter Actions (ANIA) rating of 499, with 1.3\% of imposters not being detected.
-Compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, it is clear that the machine learning approach was superior for the dataset used.
+The performance achieved was an Average Number of Genuine Actions (ANGA) rating of 16057 and an Average Number of Imposter Actions (ANIA) rating of 499, with 1.3\% of imposters not being detected.
+When compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, one could argue that the VP-3 machine learning approach performed better due to the lower ANIA and higher ANGA ratings.
+However, SA-1 catches a larger percentage of imposters than what VP-3 does, which certainly is an important result.
+Therefore, we plan to implement both SA-1 and VP-3 in this project.
 
-The dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
-The data was collected in a completely \textit{uncontrolled} manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
+Mondal's \cite{mondal} dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
+The data was collected in a completely uncontrolled manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
 They were not given any specific task, ensuring that the collected data represented the participants' natural behavior.
 
-This dataset will be used for testing the CA and PA combination, although the recorded mouse activity will not be utilized as mouse dynamics is beyond the scope of the project. 
-An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
-That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, which is a sufficient amount of data seen in relation to datasets used in PA studies.
+This dataset will be used for testing the CA and PA combination, although the recorded mouse activity will not be utilized as mouse dynamics is beyond the scope of the project.
+Mondal reports that it has an average of 47600 keystroke events per participant, which is a sufficient amount of data seen in relation to datasets used in PA studies.
 Examples of such datasets will be described in \Cref{sec:related-other}.
 %NOTE: Are these datasets described?
+
+%An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
+%That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, 
 
 \section{Periodic authentication}
 \label{sec:related-other}
@@ -380,14 +393,22 @@ This section will present the various options available to us from literature re
 A more extensive and detailed literature study is being delivered in IMT4215 Specialization Project.
 The literature discussed in this section refer to their own solutions as CA, however we will refer to them as PA due to the reason stated in \Cref{sec:topic}.
 
-\subsection{Classification}
+\subsection{Accuracy}
+To the best of our knowledge, incorporating a PA system into a CA system has not been done before. 
+We can therefore not know the answers to our research question and subquestions before performing our own analysis of the CA/PA combination.
+Regarding research question 1.a, we can look at the accuracy achieved in relevant literature to discuss how they may impact that of the CA system.
+
 One of the most cited articles on PA systems was written by Gunetti and Picardi \cite{gunettiPicardi} and published in 2005.
 They introduced the 'A' and 'R' distances, which were absolute and relative distances used for classification.
 Their solution is interesting due to how it accounts for variation in genuine users' typing behavior.
 If a genuine user for some reason types slower than usual, for instance due to cold fingers, their typing pattern is likely to stay relatively similar to the regular pattern, only at a slower speed.
 The relative distance accounts for when comparing a probe sample to a reference sample, and is used in combination with the absolute distances of speed between the samples.
-Other researchers have also built their own authentication systems based on the A and R distances \cite{Kolakowska2011, Messerman, meaningless, prettyBadPaper, Davoudi1, Davoudi2, superResults}.
+They achieved an FMR of 
+
+Several researchers have also built their own authentication systems based on the A and R distances \cite{Kolakowska2011, Messerman, meaningless, prettyBadPaper, Davoudi1, Davoudi2, superResults}.
+
 Other measures were also applied in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
+It is hard to know whether this would be true for the dataset to be used in our project due to the large differences in data collection methods.
 %NOTE: Kolakowska not present in specialization project?
 
 Machine learning has also been utilized in recent years, with with some of the research presenting promising results.
@@ -501,8 +522,7 @@ Furthermore, as periodic authentication based on keystroke dynamics is an active
 
 As mentioned in \cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, which means that no data collection will be performed.
 Therefore, when the literature study is completed, the next activity will be to implement the first statistical approach (SA-1) from Mondal's experiments.
-
-
+He describes 
 
 
 %This section is to include a description of the methods to be used,

@@ -344,7 +344,7 @@ Use $\backslash$useyear\{<year>\} to set year.
   \renewcommand\gmt@firstpagetext{%
     Masteroppgave prosjektbeskrivelse\\
     Master i Teknologi - Medieteknikk\\
-    5 ECTS\\
+    7.5 ECTS\\
     Avdeling for informatikk og medieteknikk\\
     H\o{}gskolen i Gj\o{}vik, \gmt@frontpagesyear
   }
@@ -377,9 +377,9 @@ Use $\backslash$useyear\{<year>\} to set year.
   \renewcommand\gmt@firstpagetext{%
     Master's Thesis Project Description\\
     Master of Science in Information Security\\
-    5 ECTS\\
+    7.5 ECTS\\
     Department of Computer Science and Media Technology\\
-    Gj\o{}vik University College, \gmt@frontpagesyear
+    NTNU in Gj\o{}vik, \gmt@frontpagesyear
   }
   \renewcommand\gmt@secondpagetext{\gmt@imttext}
 }
