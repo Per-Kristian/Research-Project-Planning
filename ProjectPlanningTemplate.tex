@@ -376,8 +376,12 @@ The available \textit{timing feature} from a single keystroke is the \textit{dwe
 Consecutive keystrokes are called \textit{n}-graphs, where \textit{n} is the number of keystrokes.
 Features can also be extracted from these by measuring the \textit{latency} from the press/release of one key to another.
 
-With these concepts now explained, the related literature can be presented. 
-Before the relevant PA literature is described, the CA system we will be extending is summarized in \cref{sec:related-CA} in order to allow for further discussions on what PA techniques may result in a good fit.
+With these concepts now explained, the related literature can be presented.
+Periodic \textit{identification} systems are included in this chapter.
+These systems attempt to recognize who the user is without them claiming an identity first.
+While generally having more computationally expensive matching algorithms than authentication systems, they may still have other relevant properties such as feature comparison methods which can also be used for authentication.
+
+The CA system we will be extending is first summarized in \Cref{sec:related-CA} in order to allow for further discussions on what PA techniques may result in a good fit for our project.
 
 \section{Continuous authentication}
 \label{sec:related-CA}
@@ -409,8 +413,8 @@ When compared to the best statistical approach (SA-1) having an ANGA rating of 1
 However, SA-1 catches a larger percentage of imposters than what VP-3 does, which certainly is an important result.
 Therefore, we plan to implement both SA-1 and VP-3 in this project, as there are benefits to both.
 
-Mondal's \cite{mondal} dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
-The data was collected in a completely uncontrolled manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
+Mondal's dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
+The data was collected in a completely unconstrained manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
 They were not given any specific task, ensuring that the collected data represented the participants' natural behavior.
 
 This dataset will be used for testing the CA and PA combination, although the recorded mouse activity will not be utilized as mouse dynamics is beyond the scope of the project.
@@ -424,14 +428,14 @@ We are likely to divide the dataset in a similar way to avoid distorting the per
 %An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
 %That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, 
 
-\section{Periodic authentication}
+\section{Other relevant systems}
 \label{sec:related-other}
 There is a significant amount of available literature on PA systems.
 Discussing it all is beyond the scope of this project plan. The focus will therefore mostly be on research achieving viable results using free-text authentication and having potential for being incorporated into the CA system.
 This section will present the various options available to us from literature regarding methods used for PA.
 
 A more extensive and detailed literature study is being delivered in IMT4215 Specialization Project.
-The literature discussed in this section refer to their own solutions as CA, however we will refer to them as PA due to the reason stated in \Cref{sec:topic}.
+The literature discussed in this section usually refer to their own solutions as CA, however we will refer to them as PA if they are not truly continuous due to the reason stated in \Cref{sec:topic}.
 
 \subsection{Statistical approaches}
 To the best of our knowledge, incorporating a PA system into a CA system has not been done before. 
@@ -467,12 +471,12 @@ Apart from accuracy, we must also take computational performance into account to
 Gunetti and Picardi's \cite{gnp} system used 140 seconds per authentication, which was a clear issue.
 Granted, this was on a Pentium 4 processor, and more modern CPUs should provide significantly better performance.
 The reason for the suffering computational performance was a sub-optimal classification algorithm which compared a probe sample to every single legal user's reference in the system, which in their experiment was 40 users.
-We would like to avoid using such an algorithm in our project in order to keep processing costs at a minimum.
 %This is useful for periodic \textit{identification}, where the system attempts to recognize who the user is without them claiming an identity first.
+We would prefer to avoid using such an algorithm in our project in order to keep processing costs at a minimum.
 %For 
 
 Several other researchers have also used Gunetti and Picardi's A and/or R distances \cite{Kolakowska2011, Messerman, meaningless, hu, davoudi2009, davoudi2010, superResults, Pinto2014, sliding}.
-%NOTE WHICH OF THESE ARE INTERESTING?
+%NOTE INCLUDE SOME OF THESE IN SPEC PROJ?
 Of these, especially Ferreira and Santos \cite{superResults} stand out as they attempted to tackle both the block size and computational performance problems of Gunetti and Picardi's \cite{gnp} study.
 They used a block size of 250 keystrokes, achieving an Equal Error Rate (EER) of 1.4\%, meaning the FMR and FNMR are equal at that percentage.
 They also mentioned that a specific setting gave a result of 0.5\% FMR and 2.7\% FNMR, which corresponds to an ANIA of 251 and an ANGA of 9259.
@@ -489,28 +493,41 @@ An important aspect of their system was to identify the 10\% most consistent n-g
 In other words, these were the n-graphs which the user would type in a similar manner most of the time.
 Then, during a verification process, the system would place more strict expectations onto these n-graphs when they were typed by the current user.
 All in all, this PA system consisted of several mechanisms which could be useful for our project, as it provided solutions to the block size and computational performance issues in Gunetti and Picardi's \cite{gnp} system.
-They also performed their experiments on data collected in an uncontrolled manner, which matches the setting used in Mondal's \cite{mondal} dataset, making the performance easily comparable.
+They also performed their experiments on data collected in an unconstrained manner, which matches the setting used in Mondal's \cite{mondal} dataset. 
+This increases the possibility of achieving similar performance in our implementation.
 
-Other statistical metrics than the A and R measures have also been used in literature. 
+Other statistical methods than the A and R measures have also been used in literature.
+When regarding both CA and PA systems, we have found systems using Correlation distance \cite{mondal}, Euclidian distance \cite{Monrose, Kaneko}, Scaled Euclidian distance \cite{mondal}, Kolmogorov-Smirnov Test \cite{park}, Manhattan distance \cite{Kaneko} and Scaled Manhattan distance \cite{BOURS201236}.
 %NOTE HER ER JEG.
 %NOTE FIX FØRSTE SETNING UNDER HER.
-were also applied in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
+Kaneko et al. \cite{Kaneko} applied several metrics, namely Euclidean distance, Manhattan distance, a proposed custom distance and Gaussian probability density function. Results showed that Euclidean distance performed best, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
 It is hard to know whether this would be true for the dataset to be used in our project, due to the large differences in data collection methods.
 %NOTE: Kolakowska not present in specialization project?
 
-Machine learning has also been utilized in recent years, with with some of the research presenting promising results.
-An example of this is Ahmed and Traore's work from 2007 \cite{Ahmed}, who used neural networks for classification.
-Their system uses a neural networks combined with a key mapping technique in order to predict missing digraphs from a user's enrollment sample.
-This means that a much smaller amount of different digraphs need to be recorded in the enrollment phase.
-If a user types a digraph to be used for authentication which was never recorded for the reference, it can still be compared to the approximated values of the missing digraphs, based on the genuine user's actual recorded digraphs.
-
-
 \subsection{Machine learning approaches}
-"FAST" Shim uses random forest. Good results but hard to apply in practice according to \cite{KANG201572}
+Machine learning has also been utilized in recent years, with some of the research presenting promising results.
+An interesting example of this is Ahmed and Traore's \cite{Ahmed} work from 2007, who used neural networks for classification.
+Their system uses neural networks combined with a key mapping technique in order to predict digraphs missing from a user's reference.
+This means that a much smaller amount of different digraphs need to be recorded in the enrollment phase.
+If the current user types a digraph to be used for authentication which was never recorded for the reference, it can still be compared to the \textit{approximated} values of the missing digraphs, based on the genuine user's actual recorded digraphs.
+They achieved an FMR of 0.0152\% and FNMR of 4.82\% with a block size of 500 keystrokes and considering single key dwell times and digraph flight.
+As this can be converted to an ANIA of 500 and ANGA of 10373, it could fit the CA system as it's ANIA of 499 is an \textit{average}, and can therefore be much higher in some cases.
+In those cases, a block size of 500 would be small enough to trigger an authentication faster than the CA system could lock the user out.
+They also state that their system is much faster than Gunetti and Picardi's system, which further supports our research question 1b.
 
+Other methods related to machine learning have also been used in CA and PA systems, such as k-means clustering \cite{KIM2017, Solami}, kernel ridge regression \cite{900words} and k-nearest neighbor \cite{hu, monaco}.
+Support vector machine was also used in Mondal's \cite{mondal} CA system along with a neural network, as mentioned in \Cref{sec:related-CA}.
+
+
+%"FAST" Shim uses random forest. Good results but hard to apply in practice according to \cite{KANG201572}
 %NOTE: MENTION RESEARCH QUESTION 1.c.
 
 \section{Overview}
+The previous section described the methods used in literature as well as highlighting some particularly interesting studies.
+Since we are not restricted to using the entire systems as they are described by their authors, it can be beneficial to look at a general overview of the literature, and compare certain properties of the studies.
+
+
+
 
 %\begin{table}[h]
 %\begin{tabular}{ |c|c|c|c|p{1.5cm}|p{2.1cm}|p{2cm}|c| } 
@@ -855,7 +872,7 @@ Therefore, trying to remediate this event any further is part of the project its
 
 \chapter{Ethical and legal considerations (1/4-1 page)}
 Doing research in the biometrics field can bring ethical problems and legal considerations as it often involves collecting highly sensitive information from volunteers contributing to the project.
-This is especially true for uncontrolled free-text keystroke dynamics, as the data collected involves not only measurement of the biometric trait, but also information that can be analyzed to uncover the semantics and context of what the participants typed on their private computers as long as the BeLT software was recording.
+This is especially true for unconstrained free-text keystroke dynamics, as the data collected involves not only measurement of the biometric trait, but also information that can be analyzed to uncover the semantics and context of what the participants typed on their private computers as long as the BeLT software was recording.
 
 BeLT's automatic password censoring is one measure that decreases the amount of highly sensitive information collected to a certain degree.
 Still, depending on the software, some password fields may not have been detected by BeLT, resulting in keystrokes involved in passwords being recorded without censoring. 
