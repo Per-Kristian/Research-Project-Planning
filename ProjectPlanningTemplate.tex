@@ -414,8 +414,11 @@ The data was collected in a completely uncontrolled manner by having the partici
 They were not given any specific task, ensuring that the collected data represented the participants' natural behavior.
 
 This dataset will be used for testing the CA and PA combination, although the recorded mouse activity will not be utilized as mouse dynamics is beyond the scope of the project.
-Mondal reports that it has an average of 47600 keystroke events per participant, which is a sufficient amount of data seen in relation to datasets used in PA studies.
-Examples of such datasets will be described in \Cref{sec:related-other}.
+Mondal reports that it has an average of 47600 keystroke events per participant. 
+In his approach, he used 35\% of a user's recorded keystrokes for training, up to a maximum of 20000.
+This is a sufficient amount of data seen in relation to the sizes of references used in state of the art PA studies.
+Furthermore, 10\% was used for adjusting the parameters of the algorithms, and the rest was used for testing.
+We are likely to divide the dataset in a similar way to avoid distorting the performance in any direction. 
 %NOTE: Are these datasets described?
 
 %An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
@@ -474,10 +477,25 @@ Of these, especially Ferreira and Santos \cite{superResults} stand out as they a
 They used a block size of 250 keystrokes, achieving an Equal Error Rate (EER) of 1.4\%, meaning the FMR and FNMR are equal at that percentage.
 They also mentioned that a specific setting gave a result of 0.5\% FMR and 2.7\% FNMR, which corresponds to an ANIA of 251 and an ANGA of 9259.
 Considering the CA system's ANIA is 499, this amount of keystrokes may positively impact the CA system's imposter detection rate.
-The ANGA is also in an acceptable range which should not lead to very many false rejections per day.
+The PA's ANGA is also in an acceptable range which should not lead to very many false rejections per day.
 
-Other measures were also applied in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
-It is hard to know whether this would be true for the dataset to be used in our project due to the large differences in data collection methods.
+As opposed to Gunetti and Picardi's solution, Ferreria and Santos' system only compared probes to the reference of the claimed identity, assuring fast computation.
+The size of the reference used was 11250 keystrokes, which is comparable to Mondal's training sets, as mentioned in \cref{sec:related-CA}.
+Their method involved extracting single keystroke dwell times and and digraph \textit{flight times}.
+Flight time is a commonly used term for the latency between the release of one key to the pressing of the next.
+Furthermore they also used press-press latencies of 2-, 3-, and 4-graphs, similarly to Gunetti and Picardi \cite{gnp}.
+
+An important aspect of their system was to identify the 10\% most consistent n-graphs with regards to extracted features.
+In other words, these were the n-graphs which the user would type in a similar manner most of the time.
+Then, during a verification process, the system would place more strict expectations onto these n-graphs when they were typed by the current user.
+All in all, this PA system consisted of several mechanisms which could be useful for our project, as it provided solutions to the block size and computational performance issues in Gunetti and Picardi's \cite{gnp} system.
+They also performed their experiments on data collected in an uncontrolled manner, which matches the setting used in Mondal's \cite{mondal} dataset, making the performance easily comparable.
+
+Other statistical metrics than the A and R measures have also been used in literature. 
+%NOTE HER ER JEG.
+%NOTE FIX FØRSTE SETNING UNDER HER.
+were also applied in \cite{Kaneko}, namely Euclidean distance, Manhattan distance, a proposed distance and Gaussian probability density function. Results showed that Euclidean distance gave the best result, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
+It is hard to know whether this would be true for the dataset to be used in our project, due to the large differences in data collection methods.
 %NOTE: Kolakowska not present in specialization project?
 
 Machine learning has also been utilized in recent years, with with some of the research presenting promising results.
