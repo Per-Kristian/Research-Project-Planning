@@ -375,6 +375,13 @@ As mentioned in \Cref{sec:topic}, we will be focusing on the timing information 
 The available \textit{timing feature} from a single keystroke is the \textit{dwell time}, which is a measurement of how long the key is held down.
 Consecutive keystrokes are called \textit{n}-graphs, where \textit{n} is the number of keystrokes.
 Features can also be extracted from these by measuring the \textit{latency} from the press/release of one key to another.
+Using digraphs as an example, the available latencies are as follows \cite{mondal}:
+\begin{itemize}
+    \item Down-Down: The time elapsed from pressing down the first key to pressing the second key.
+    \item Up-Up: The time between releasing the first key and releasing the second key.
+    \item Up-Down: The time between releasing the first key and pressing the second key. This is often called \textit{flight time}.
+    \item Down-Up: The time from pressing the first key and releasing the second key.
+\end{itemize}
 
 With these concepts now explained, the related literature can be presented.
 Periodic \textit{identification} systems are included in this chapter.
@@ -464,7 +471,7 @@ ANGA = \frac{block size}{FNMR} = \frac{800}{0.04833} \approx 16553
 
 Genuine user's are rarely rejected with this ANGA rate, which is also the case in Mondal's \cite{mondal} CA system.
 However, the ANIA rate is higher than that of the original CA system (499).
-We would prefer a lower ANIA rate so that the PA system will in more cases have a chance to make a decision before the CA system has already removed access from the current user.
+We would prefer a lower ANIA rate than 800 so that the PA system will in more cases have a chance to make a decision before the CA system has already removed access from the current user.
 This way we can make more use of both authentication systems, which will hopefully impact our research subquestion regarding achieving a better accuracy.
 
 Apart from accuracy, we must also take computational performance into account to discuss research question 1b.
@@ -523,27 +530,66 @@ Support vector machine was also used in Mondal's \cite{mondal} CA system along w
 %NOTE: MENTION RESEARCH QUESTION 1.c.
 
 \section{Overview}
+\label{sec:related-overview}
 The previous section described the methods used in literature as well as highlighting some particularly interesting studies.
 Since we are not restricted to using the entire systems as they are described by their authors, it can be beneficial to look at a general overview of the literature, and compare certain properties of the studies.
 
+\subsection{Data collection}
+\label{sec:related-overview-collection}
+The approaches used for experimental data collection is interesting for the project, as some are more similar to Mondal's \cite{mondal} unconstrained collection approach than others.
+There are other several studies with unconstrained data collection \cite{Pinto2014, Ahmed, superResults, Janakiraman2007, sliding, BOURS201236}, whereas some studies constrained the participants to typing freely into a webform \cite{gnp, Solami, davoudi2009, davoudi2010}.
+Other studies had the participants perform specific tasks \cite{900words, monaco, Monrose, KIM2017, park}, such as writing a long fictional text.
+Hu et al. \cite{hu} had all participants write a static text, while Kim et al. \cite{KIM2017} assigned different such texts to every participants to simulate free-text.
+With regards to participants included in experiments, ten researches had 30 or more participants \cite{Messerman, gnp, Ahmed, superResults, KIM2017, 900words, sliding, Monrose, park, monaco}.
+One of these had 2000 participants \cite{900words}.
+Since the dataset we will be using \cite{mondal} contains data from 53 users, the variance in inter-user behavior is expected to be more than high enough to be comparable to other studies.
 
+\subsection{Feature extraction}
+Looking at how feature extraction is performed is also of value, in order to see viable approaches we can use.
+The related studies extracted various latencies from n-graphs, however some also consider dwell times \cite{Pinto2014, superResults, KIM2017, Ahmed, Monrose, Janakiraman2007, monaco, BOURS201236}, which Mondal's \cite{mondal} CA system also does.
+When considering consecutive keystrokes, some studies \cite{davoudi2009, davoudi2010, KIM2017, Ahmed, Janakiraman2007, Solami, BOURS201236, Monrose, park, monaco} restricted themselves to considering digraphs only.
+This was also done by Mondal \cite{mondal}.
+One study \cite{900words} used only trigraphs, while the rest used several types of n-graphs.
 
+Block size in periodic systems is also relevant to look at, as a small block size is ideal for the CA/PA combination.
+Seven studies used a block size of 500 keystrokes or less \cite{superResults, Messerman, Pinto2014, Ahmed, hu, park}.
+Studies achieving good performance using such a small amount of keystrokes are important to consider when we are to implement the PA part of the project.
+However, more factors must also be taken into consideration, as for example one of the studies with small block size used static text instead of free-text \cite{hu}.
+Therefore, this chapter is concluded with \Cref{tab:summary}, where the properties of the related studies can be seen in separate contexts.
 
-%\begin{table}[h]
-%\begin{tabular}{ |c|c|c|c|p{1.5cm}|p{2.1cm}|p{2cm}|c| } 
-% \hline
-% \bf Paper & \bf Block & \bf Users & \bf Uncontr. & \bf Method & \bf Perf. & \bf Notes & n-graphs\\ \hline
-% \bf Messerman & 50 - 150 & 55 & Webmail & R\&A &  FAR 2.02\% FRR 1.84\% & adaptive user model & \\ \hline
-% \bf Ferreira & 250 & 60 & Yes & R\&A & EER 1.4\% & Updates user profile, also triggers authentication asynch & \\ \hline
-% Davoudi(2) & & & & & & & \\ \hline
-% %Singh &- & - & - & - & - & STATIC AUTHENT. DONT BOTHER & \\ \hline
-% Kaneko & ~200 & 51 & No & Euclidian & 0.66\% EER & Static fixed text, jap. & di \\ \hline
-% Ahmed & 500 & 53 & Yes & Neural Networks & FAR 0.0152\% FRR 4.82\% ERR 2.45\% & & mono di\\\hline
-% Gunetti & 800 & 40 & Webform & R\&A & FAR 0.005\% FRR 4.833\% & & 2,3,4\\ \hline
-% \bf Hu et al. & 36 & 19 & Webform & R\&A, k-NN & FAR 0.045\% FRR 0.005\% & Static text & - \\ \hline
-% 
-%\end{tabular}
-%\end{table}
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ |l|p{2.1cm}|l|p{2.15cm}|p{3cm}|p{2.3cm}|p{2.5cm}|l| } 
+ \hline
+ \bf Paper & \bf Block length & \bf Users & \bf Task & \bf Method & \bf Performance & \bf Feature & \bf DB \\ \hline
+ \cite{gnp} & 700-900 & 40 & Webform & R and A measures & FMR 0.005\% FNMR 4.833\% & 2-, 3- and 4-graph latency & Own*\\ \hline
+ \cite{Messerman} & 50 - 150 & 50 & Webmail & R measure & FMR 2.02\%  FNMR 1.84\% & n-graph latency & Own\\ \hline
+ \cite{superResults} & 250 & 60 & Unconstrained & R and A measures & EER 1.4\% & Dwell time, flight time for 2-, 3-, and 4-graphs & Own\\ \hline
+ \cite{Pinto2014} & 150 & 10 & Unconstrained & R and A measures & FMR ~2\% FNMR ~2\% & Dwell time, flight time for 2-, 3-, and 4-graphs & Own \\ \hline
+ \cite{davoudi2009} & 700-900 & 21 & Webform & Modified R measure & FMR 0.08\% FNMR 18.8\% & Digraph latency & \cite{gnp} \\ \hline
+ \cite{davoudi2010} & 700-900 & 21 & Webform & Weighted R measure & FMR 0.07\% FNMR 15.2\% & Digraph latency & \cite{gnp} \\ \hline
+ %Singh &- & - & - & - & - & STATIC AUTHENT. DONT BOTHER & \\ \hline
+ %Kaneko \cite{Kaneko} & ~200 & 51 & No & Euclidian & 0.66\% EER & Static fixed text, jap. & di \\ \hline
+ \cite{Ahmed} & 500 & 53 & Unconstrained & Neural Networks (NN) & FMR 0.0152\%, FNMR 4.82\%, ERR 2.13\% & Dwell time, digraph flight time & Own\\\hline
+ \cite{hu} & 36 & 19 & Webform, static text & R and A measures, k-Nearest Neighbor & FMR 0.045\% FNMR 0.005\% & n-graph latency & Own \\ \hline
+ \cite{900words} & 900 words & 2000 & Pre-defined tasks & Kernel Ridge Regression, truncated-RBF kernel & EER 1.39\% & Trigraph flight times & \cite{chang} \\ \hline
+ \cite{KIM2017} & 1000 & 150 & Pre-defined task & K-means clustering & EER 0.44\% & Dwell time, digraph latencies & Own \\ \hline
+ %\cite{CPE3718} & 14 & 31 & Password & MLP Neural Network & EER 0.051\% & Static auth \\ \hline
+ \cite{Solami} & 700-900 & 14 & Webform & K-means clustering & Accuracy 100\% & Digraph latency & \cite{gnp}\\ \hline
+ \cite{Janakiraman2007} & Minimum 2 & 22 & Unconstrained & Bhattacharyya distance & Accuracy 70\%-100\% & Dwell time, digraph flight time & Own\\ \hline
+ \cite{Monrose} & Unknown & 31 & Pre-defined tasks & Euclidian distance, weighted probability & Accuracy 23\% & Dwell time, digraph flight time & Own\\ \hline
+ \cite{sliding} & 1 min sliding window & 56 & Unconstrained & R and A measures & FMR 1\% FNMR 11.5\% & n-graph latency & Own*\\ \hline
+ \cite{BOURS201236} & Continuous & 25 & Unconstrained & Scaled Manhattan distance & 182 ANIA & Dwell time, digraph latency & Own\\ \hline
+ \cite{mondal} & Continuous & 53 & Unconstrained & Scaled Euclidian distance, Correlation distance, NN, support vector machine & 499 ANIA, 16057 ANGA & Dwell time, digraph latencies & Own \\ \hline
+ \cite{monaco} & 775 on average & 119 & Pre-defined tasks & k-Nearest Neighbor & EER 3.7\% & Dwell time, digraph latencies incl. flight time & Own \\ \hline
+ \cite{park} & 300 & 35 & Pre-defined tasks & Kolmogorov-smirnov Test & EER 0.09\% & Digraph latency & Own \\ \hline
+
+\end{tabular}
+}
+\caption{Summary of relevant periodic and continuous systems. Datasets marked with an ampersand (*) in the database (DB) column are available publicly or by request. This table is also included in my IMT4215 Specialization Project report.}
+\label{tab:summary}
+\end{table}
+
 
 %Machine learning
 
@@ -617,10 +663,13 @@ Since we are not restricted to using the entire systems as they are described by
 
 \chapter{Choice of methods (2-5 pages)}
 \section{Literature study}
-Even though a literature study already has been performed on the topic, the project period will begin with an additional literature study.
+The project period will begin with an additional literature study, where the goal is to find more relevant studies on free-text keystroke dynamics, and especially PA studies.
+
+
+
 The existing researches will be reviewed in more extensive detail, applying the knowledge which has already been gained to decide exactly which PA techniques will be used in the project.
 The techniques to be used must also be well understood before implementing them.
-Especially the machine learning algorithms to be used will require more studying, due to inexperience with these.
+Especially machine learning algorithms will require more studying, due to inexperience with these.
 Furthermore, as periodic authentication based on keystroke dynamics is an active research field, new studies may have been published which were not already covered in this document.
 
 
