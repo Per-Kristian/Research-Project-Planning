@@ -210,7 +210,7 @@ Therefore, we would like to investigate if extending an existing CA system with 
 
 
 \section{Keywords}
-Behavioral biometrics; keystroke dynamics; continuous authentication; periodic authentication; intrusion detection; distance-based classification; machine learning 
+Behavioral biometrics; keystroke dynamics; continuous authentication; periodic authentication; distance-based classification; machine learning 
 %There are several sources of keywords. Rather than 'inventing your own' you should select an appropriate set of keywords from a reputable source such as the one published by the IEEE computer society (IEEE Computer Society - Keywords) or ACM (ACM Computing Classification System).
 %%\protect\url{http://www.computer.org/portal/site/ieeecs/menuitem.c5efb9b8ade9096b8a9ca0108bcd45f3/index.jsp?&pName=ieeecs_level1&path=ieeecs/publications/author/keywords&file=ACMtaxonomy.xml&xsl=generic.xsl&},
 %The taxonomy by Avizienis et al\cite{Avizienis2004} provides an overview of of the subject area and an alternative set of keywords/classifications.
@@ -239,7 +239,7 @@ The main problem with CA systems is that they need to base their decisions on a 
 Every action is continuously classified as an imposter action or a genuine action. 
 That means that CA systems are not able to rely on statistics from the current user's typing pattern.
 
-Both CA and PA systems share another common problem, being that they can make errors.
+CA and PA systems share another common problem, being that they can make errors.
 More specifically, they may wrongfully believe that the genuine user is an imposter, or they may mistake an imposter for being the genuine user.
 In real-time implementations of such systems, the first case would lead to access being removed from the genuine user, which would be a source of irritation or frustration.
 The second case would give an imposter time to perform more keystrokes before (hopefully) having their access removed at a later point.
@@ -278,9 +278,9 @@ Therefore, an important problem to solve is to decrease the number of keystrokes
 
 \section{Justification, motivation and benefits}
 
-By achieving positive results, this project has the potential to increase the viability of free-text keystroke dynamics in industries and sectors where a higher level of security is needed or desired, such as the health sector or other critical infrastructures.
+By achieving positive results, this project has the potential to increase the viability of free-text keystroke dynamics in industries and sectors where a higher level of information security is needed or desired, such as the health sector or other critical infrastructures.
 This does not exclude other work environments or even private computers, as any owner of a system where security is essential could benefit from imposters being automatically detected and locked out by typing on the keyboard.
-As improving the CA system's accuracy would lead to imposters being detected more quickly while genuine users are locked out less frequently, it would lead to higher security and a better user experience.
+As improving the CA system's accuracy would lead to imposters being detected more quickly while genuine users are locked out less frequently, it would lead to a higher level of security and a better user experience.
 
 %This section should be understandable by everybody including your family and relatives.
 %In particular, it should be understandable to those who will benefit.
@@ -309,7 +309,7 @@ dynamics significantly improve the original system's imposter detection accuracy
 %\item Can extending a continuous authentication system with periodic authentication significantly improve imposter detection accuracy?
 \begin{enumerate}
 \item Which incorporated PA system can lead to the best results in terms of accuracy?
-\item Which incorporated PA system leads to the best results in terms of computational performance?
+\item Which incorporated PA system can lead to the best results in terms of computational performance?
 
 %\item Which combination of distance measures gives the best result in terms of accuracy?
 %\item Which combination of distance measures gives the best result is terms of computational performance?
@@ -337,10 +337,14 @@ dynamics significantly improve the original system's imposter detection accuracy
 %\end{enumerate}
 
 \section{Planned contributions}
-The intended contribution of this project is to extend an existing CA system with a PA system in order to improve the imposter detection accuracy of the original system.
-The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystrokes on average. 
-Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user is wrongfully detected as being an imposter after 16057 keystrokes on average.
-By incorporating a PA system into the CA system, the aim is to improve these performance rates while keeping computational costs low enough to be used transparently on computers with the computational power of an average household laptop.
+The intended contribution of this project is to extend a previously proposed CA system with a PA system in order to improve the imposter detection accuracy of the original system.
+The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystroke actions on average. 
+Between 0.9\% and 1.3\% of imposters go undetected.
+Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user can perform 16057 keystroke actions on average before the system mistakes them for being an imposter.
+By incorporating a PA system into the CA system, the aim is to improve these performances, also measuring our own results in terms of ANIA and ANGA rates as well as the number of undetected imposters.
+
+We also aim to keep computational costs low enough to be used transparently on machines with the computational power of an average household laptop.
+This is important in case our combined CA/PA system is to be implemented as a real-time application in some future project.
 The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, as opposed to using an entire PA system as it is described by its original authors.
 %\\\\
 %---------------------
@@ -397,12 +401,12 @@ Similarly to Bours' CA study \cite{BOURS201236}, Mondal's trust model worked by 
 
 After the initial static authentication, the user's trust level was set to 100, being the highest achievable level.
 Typing patterns deviating from the reference would cause penalties in the form of lowering the trust level, while patterns complying with the reference would cause rewards to be given in the form of increasing the trust of the user's genuineness.
-A threshold level was set to a value below 100, and should the current user's trust level fall below said threshold, they would be locked out.
+A \textit{lockout threshold} was set to a value below 100, and should the current user's trust level fall below said threshold, they would be locked out.
 Ideal results would have had genuine users' trust levels never dropping below the threshold, while all imposters' levels would drop below the threshold after a small amount of actions performed.
 
 An important part of the trust model was to determine how big of a reward or penalty should be given per action performed.
 For CA based on keystroke dynamics alone, Mondal \cite{mondal} presented and used an implementation of a trust model referred to as \textit{Dynamic Trust Model (DTM)}.
-The size of the reward or penalty was determined by a single continuous function based on a classification score computed by comparing the probe to the reference.
+The size of the reward or penalty was determined by a single continuous function based on a \textit{classification score} computed by comparing the probe to the reference.
 The larger the difference between the classification score and an arbitrary threshold (not to be confused with the lockout threshold), the larger the penalty or reward became.
 Therefore, an action with a classification score just below the threshold separating penalty and reward would only result in a small decrease in trust level.
 
@@ -474,7 +478,7 @@ However, the ANIA rate is higher than that of the original CA system (499).
 We would prefer a lower ANIA rate than 800 so that the PA system will in more cases have a chance to make a decision before the CA system has already removed access from the current user.
 This way we can make more use of both authentication systems, which will hopefully impact our research subquestion regarding achieving a better accuracy.
 
-Apart from accuracy, we must also take computational performance into account to discuss research question 1b.
+Apart from accuracy, we must also take computational performance into account to discuss \textit{research question 1.b}.
 Gunetti and Picardi's \cite{gnp} system used 140 seconds per authentication, which was a clear issue.
 Granted, this was on a Pentium 4 processor, and more modern CPUs should provide significantly better performance.
 The reason for the suffering computational performance was a sub-optimal classification algorithm which compared a probe sample to every single legal user's reference in the system, which in their experiment was 40 users.
@@ -520,7 +524,7 @@ If the current user types a digraph to be used for authentication which was neve
 They achieved an FMR of 0.0152\% and FNMR of 4.82\% with a block size of 500 keystrokes and considering single key dwell times and digraph flight.
 As this can be converted to an ANIA of 500 and ANGA of 10373, it could fit the CA system as it's ANIA of 499 is an \textit{average}, and can therefore be much higher in some cases.
 In those cases, a block size of 500 would be small enough to trigger an authentication faster than the CA system could lock the user out.
-They also state that their system is much faster than Gunetti and Picardi's system, which further supports our research question 1b.
+They also state that their system is much faster than Gunetti and Picardi's system, which further supports our \textit{research question 1.b}.
 
 Other methods related to machine learning have also been used in CA and PA systems, such as k-means clustering \cite{KIM2017, Solami}, kernel ridge regression \cite{900words} and k-nearest neighbor \cite{hu, monaco}.
 Support vector machine was also used in Mondal's \cite{mondal} CA system along with a neural network, as mentioned in \Cref{sec:related-CA}.
@@ -662,22 +666,92 @@ Therefore, this chapter is concluded with \Cref{tab:summary}, where the properti
 %\end{enumerate}
 
 \chapter{Choice of methods (2-5 pages)}
+%NOTE: Quantitative?
 \section{Literature study}
-The project period will begin with an additional literature study, where the goal is to find more relevant studies on free-text keystroke dynamics, and especially PA studies.
+Even though a literature study has already been performed, the project period will begin with an additional literature review.
+Here we will review those studies who have stood out the most regarding techniques and methods leading to good results with similar datasets to Mondal's \cite{mondal}.
+The goal is then to identify more studies that have not been covered in \Cref{chap:related} but may still be relevant to the project.
+Furthermore, as periodic authentication based on keystroke dynamics is an active research field, new studies may have been published by the time the project starts.
+Such new studies may provide valuable knowledge and could possibly be proposing methods viable for our project.
+
+The most relevant literature will be reviewed in more extensive detail in order to decide exactly which PA system will be used in the project.
+One of the important decisions will be to decide on which classification method will be used for periodic authentication.
+As mentioned in \Cref{sec:related-other}, this may be a statistical method such as a distance metric, or it may be a machine learning algorithm.
+We will also investigate which block size we can use, as well as which n-graph features to extract.
+Furthermore, we will review Mondal's \cite{mondal} thesis in order to prepare our own implementation of his CA system.
+
+\section{System setup}
+As our research questions are aimed at investigating if the CA system's performance can be improved, our first major task will be to implement the CA system.
+To be able to truly know if we have improved it in the end, we must reproduce it in the same way it was originally described by Mondal \cite{mondal}.
+We should be able to achieve the same or similar performance as we are using the same dataset as he did for his experiments.
+
+It was mentioned in \Cref{sec:related-CA} that SA-1 was the best statistical approach in Mondal's work.
+Specifically, it outperformed SA-2 significantly both in terms of ANIA and ANGA rates, as well as the number of undetected imposters.
+For this reason, SA-1 is the statistical approach we will use.
+We will also be implementing the VA-3 approach in order to measure the impact of PA on both the statistical and the machine learning approach of the CA system.
+
+In general for both approaches, we will have to implement feature extraction, a Keystroke Matching Module, a method for score calculation, the Dynamic Trust Model and a Decision Module.
+These are all parts of Mondal's CA system \cite{mondal}, as described in \Cref{sec:related-CA}.
+The Keystroke Matching Module will in differ between the SA-1 and VP-3 implementations, as this is where the keystroke features are compared using either distance metrics or machine learning.
+
+In addition to implementing both approaches of the CA system, we will also have to implement a PA system.
+It will generally have a similar set of modules, though the Dynamic Trust Module is specific to the CA.
+\Cref{fig:system-diagram} shows a block diagram of a possible setup we can build, and an example of how the PA system could interact with the CA system.
+When we have decided upon which keystroke features to use in our PA system, we must implement a mechanism for extracting said features from the dataset, based on the chosen block size.
+Furthermore we need functionality for building user references, as well as a PA Keystroke Matching Module.
+This matching module may then produce a matching score or distance which the PA Decision Module will use to determine whether the testing data, which may be seen as a simulated probe, matches the reference.
+The interaction between the PA and CA system shown in \Cref{fig:system-diagram} is one option we face for addressing \textit{research question 1.c}.
+In this option, the match/non-match decision from the PA system is used to influence the CA trust level.
+For example, if the block of keystrokes was found to not match the reference in the PA system, the CA system could issue a penalty in the form of lowering the trust value by a static amount.
+If the trust level already was low, this could force it below the lockout threshold, which would cause the CA system to remove the current user's access as mentioned in \Cref{sec:related-CA}.
+
+Another option could be to omit the PA system's Decision Module and instead let it provide the CA system with a classification score (or distance).
+The Dynamic Trust Model could then calculate how much to raise or lower the current trust level, similarly to what it already does with the CA classification score.
+Further options will be explored and possibly tested in the project period.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{system-diagram.pdf}
+    \caption{Generalized diagram of how our systems may cooperate and produce data for analysis.}
+    \label{fig:system-diagram}
+\end{figure}
+
+%Feature extraction
+    %Features for CA system: single keys and digraphs
+    %Features for PA system: could use the same, or base our choice on other literature
+
+%
+    
+%
+
+%
+
+%Mention how the PA system may interact with the trust model OR make its own decision.
+
+\section{Analysis}
+Our main research question revolves around finding out if the the performance of the original CA system can be improved by incorporating periodic authentication.
+For this we will perform a \textit{quantitative} analysis \cite{leedy_ormrod_2013}.
+More specifically, we can test the performance of the combined system by means of a leave-one-out cross validation test, which Mondal also did in his experiment.
+The dataset includes 53 users, which means that for every genuine user we can test the performance using 52 imposters.
+Performing these test will produce the necessary data for us to calculate the system's ANIA and ANGA values, as well as the number of undetected imposters.
+During analysis, we will be able to adjust different variables to see its direct impact on performance, and tweak the system accordingly.
+When doing so, we must avoid \textit{overfitting} our system to the specific dataset we are using.
+
+For example, if decisions from the PA system are to be used as input to the Dynamic Trust Model, finding the optimal \textit{impact values} will be of great interest.
+In such a case, the impact value would be how much the trust level would drop per periodic non-match, or how much it would increase per periodic match.
+These two impact values may also be asymmetrical, i.e. periodic non-matches could decrease the trust level more than periodic matches would increase it.
+There is clearly a large number of possible combinations of impact values, and we would naturally want to know which combination would give the best performance.
+Optimizing these values using a relatively small subset of the users before applying them to the entire dataset could help us avoid a situation where performance of our system is significantly better on our dataset than on other unconstrained datasets.
+
+We are also interested in keeping computational costs as low as possible, as seen in \textit{research question 1.b}.
+For this, we would like to analyze the processing time used per authentication.
+Since we are incorporating PA into an existing CA system, the focus will be on minimizing the computational costs introduced by PA as opposed to decreasing the computational cost of the CA system.
 
 
 
-The existing researches will be reviewed in more extensive detail, applying the knowledge which has already been gained to decide exactly which PA techniques will be used in the project.
-The techniques to be used must also be well understood before implementing them.
-Especially machine learning algorithms will require more studying, due to inexperience with these.
-Furthermore, as periodic authentication based on keystroke dynamics is an active research field, new studies may have been published which were not already covered in this document.
+%Leave one out
 
-
-\section{Implementing CA statistical approach}
-
-As mentioned in \cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, which means that no data collection will be performed.
-Therefore, when the literature study is completed, the next activity will be to implement the first statistical approach (SA-1) from Mondal's experiments.
-He describes 
+%NOTE: HUSK RESEARCH Q 1C!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 %This section is to include a description of the methods to be used,
@@ -742,41 +816,46 @@ He describes
 %\ganttlink{elem3}{elem4}
 %\end{ganttchart}
 %\end{landscape}
+\section{Resources}
+The only resource 
+
+\section{Implementing CA statistical approach}
+As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period.
 
 
-The purpose of this chapter is to convince the reader that you know exactly what to do.
-This chapter gives a description of how the project is to be
-broken down into smaller parts and activities.
-\begin{enumerate}
-\item  What is it you have to do in order to obtain the desired knowledge?
-\item  What deliverables are to be produced (MSc thesis report, software,...)
-\item  When are the various deliverables going to be available?
-\end{enumerate}
-
-For each deliverable, identify 4 versions, having an
-'increasing' degree of completeness/quality.
-Students are strongly recommended to review each others drafts.
-For each version of a deliverable explain why and how this version is to
-be better/more complete.  E.g. v1.0: my first draft -
-chapter text includes 1/2 page summaries only.
-v.2.0: Like v1.0, but comments by NN(who? fellow student)
-has been incorporated. v3.0:....
-
-This section is to include a preliminary table of contents for the MSc thesis
-(only include 2 levels).
-
-For each of the activities identified, specify
-\begin{enumerate}
-\item  the time you need to complete each activity both calendar time and 'man-hours'.
-\item  hours needed by you
-\item  things you need to buy (consumables)
-\item  equipment, lab space or facilities you need access to
-\item  contributions from others (e.g. survey/interview participants) and how much each will have to contribute in terms of resources (probably time)
-\end{enumerate}
-At the beginning of this section, provide a 2-3 line summary of the
-resource requirements.  This is particularly useful if you have broken
-down the task into a lot of small tasks.
-
+%The purpose of this chapter is to convince the reader that you know exactly what to do.
+%This chapter gives a description of how the project is to be
+%broken down into smaller parts and activities.
+%\begin{enumerate}
+%\item  What is it you have to do in order to obtain the desired knowledge?
+%\item  What deliverables are to be produced (MSc thesis report, software,...)
+%\item  When are the various deliverables going to be available?
+%\end{enumerate}
+%
+%For each deliverable, identify 4 versions, having an
+%'increasing' degree of completeness/quality.
+%Students are strongly recommended to review each others drafts.
+%For each version of a deliverable explain why and how this version is to
+%be better/more complete.  E.g. v1.0: my first draft -
+%chapter text includes 1/2 page summaries only.
+%v.2.0: Like v1.0, but comments by NN(who? fellow student)
+%has been incorporated. v3.0:....
+%
+%This section is to include a preliminary table of contents for the MSc thesis
+%(only include 2 levels).
+%
+%For each of the activities identified, specify
+%\begin{enumerate}
+%\item  the time you need to complete each activity both calendar time and 'man-hours'.
+%\item  hours needed by you
+%\item  things you need to buy (consumables)
+%\item  equipment, lab space or facilities you need access to
+%\item  contributions from others (e.g. survey/interview participants) and how much each will have to contribute in terms of resources (probably time)
+%\end{enumerate}
+%At the beginning of this section, provide a 2-3 line summary of the
+%resource requirements.  This is particularly useful if you have broken
+%down the task into a lot of small tasks.
+%
 \chapter{Feasibility study (1/2-3 pages)}
 An analysis of why it is likely that the desired
 results can be produced within the given time and
@@ -953,50 +1032,50 @@ When the project period is over, the database and any material containing sensit
 
 %9.  Bibliography (1-3 pages)
 
-\chapter{The bibliography}
-References/bibliography
-Reference to other peoples work MUST include:
-\begin{itemize}
-\item Name of author(s)  or name of responsible organization (if the document does not have a named author.
-\item Title of document.
-\item Where published.
-\item Year of publication.
-\end{itemize}
-
-There are many different types of documents (article, book etc.).
-In many cases, the required/optional fields may differ.
-See e.g. the BibTeX entry of wikipedia (\url{http://en.wikipedia.org/wiki/BibTeX}).
-The bibliography file 
-\verb+imt4441.bib+ 
-contains an example.
-
-NOTE: A url on its own is no good!
-It must be possible to locate the reference even if a link goes dead!
-
-\appendix
-\chapter{Known problems with MikTeX and TeXnicCenter}
-\section{Hig logo xor url's}
-\paragraph{Problem}
-Using MikTeX (version 2.6) in combination with TeXnicCenter you may experience the following problems:
-
-You have to choose between being able to get the HIG logo on the front page (Use the TeXnic translation LaTeX => ps => pdf)  and getting visible url's (use the LaTeX => PDF translation option).
-
-\paragraph{Possible solution 1}
-use \verb+\usepackage[dvips]{graphicx}+ in combination with TeXnicCenter translation LaTeX => PS, and use Adobe distiller to convert from PS to PDF.  This should give both logo and URL (but no line breaks in URL's).
-
-\paragraph{Possible solution 2}
-Use \verb+epstopdf.exe+ to convert \verb+higlogo.eps+ to \verb+higlogo.pdf+.
-Modify the file \verb+gucmasterthesis.cls+ to include \verb+higlogo.pdf+ instead of \verb+higlogo+.
-Select the TeXnicCenter translation \verb+LaTeX => PDF+.
-
-
-\section{\LaTeX/AFPL Ghostscript crashes}
-\paragraph{Problem}
-The build window prints out operand stack, execution and dictionary stack before concluding with the message 
-'\verb+Unrecoverable error, exit code 1+'.
-\paragraph{Possible solution}
-Use the TeXnicCenter translation 'LaTeX => PDF'.
-
+%\chapter{The bibliography}
+%References/bibliography
+%Reference to other peoples work MUST include:
+%\begin{itemize}
+%\item Name of author(s)  or name of responsible organization (if the document does not have a named author.
+%\item Title of document.
+%\item Where published.
+%\item Year of publication.
+%\end{itemize}
+%
+%There are many different types of documents (article, book etc.).
+%In many cases, the required/optional fields may differ.
+%See e.g. the BibTeX entry of wikipedia (\url{http://en.wikipedia.org/wiki/BibTeX}).
+%The bibliography file 
+%\verb+imt4441.bib+ 
+%contains an example.
+%
+%NOTE: A url on its own is no good!
+%It must be possible to locate the reference even if a link goes dead!
+%
+%\appendix
+%\chapter{Known problems with MikTeX and TeXnicCenter}
+%\section{Hig logo xor url's}
+%\paragraph{Problem}
+%Using MikTeX (version 2.6) in combination with TeXnicCenter you may experience the following problems:
+%
+%You have to choose between being able to get the HIG logo on the front page (Use the TeXnic translation LaTeX => ps => pdf)  and getting visible url's (use the LaTeX => PDF translation option).
+%
+%\paragraph{Possible solution 1}
+%use \verb+\usepackage[dvips]{graphicx}+ in combination with TeXnicCenter translation LaTeX => PS, and use Adobe distiller to convert from PS to PDF.  This should give both logo and URL (but no line breaks in URL's).
+%
+%\paragraph{Possible solution 2}
+%Use \verb+epstopdf.exe+ to convert \verb+higlogo.eps+ to \verb+higlogo.pdf+.
+%Modify the file \verb+gucmasterthesis.cls+ to include \verb+higlogo.pdf+ instead of \verb+higlogo+.
+%Select the TeXnicCenter translation \verb+LaTeX => PDF+.
+%
+%
+%\section{\LaTeX/AFPL Ghostscript crashes}
+%\paragraph{Problem}
+%The build window prints out operand stack, execution and dictionary stack before concluding with the message 
+%'\verb+Unrecoverable error, exit code 1+'.
+%\paragraph{Possible solution}
+%Use the TeXnicCenter translation 'LaTeX => PDF'.
+%
 %\chapter{Project description evaluation criteria}
 
 
