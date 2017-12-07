@@ -92,8 +92,8 @@ Version \#  & Description of change (why, what where - a few sentences)\\
 \newpage
 
 \begin{abstract}
-Abstract (1/2 page)
-This document provides format and guidelines  for the 
+Abstract
+This document provides format and guidelines for the 
 MSc project descriptions. The document has been produced using MikTeX and TeXnicCenter.
 
 The objective of the abstract is to provide the reader with an understanding of the work to be done and put him in the position to make a 'correct' decision regarding  reading/not reading the report.
@@ -148,7 +148,7 @@ The abstract of the project description
 %Each chapter must contain the information specified in this document and further explained in 
 %lectures or included in lecture notes.
 
-\chapter{Introduction (1-2 pages)}
+\chapter{Introduction}
 
 \section{Topic covered by the project}
 \label{sec:topic}
@@ -159,30 +159,30 @@ This could for example be a password or a token such as a key card.
 The user may also give a representation of what they \textit{are}, which bring us to the topic of \textit{biometrics}.
 
 Biometric systems measure human characteristics to determine the identity of users.
-While biological biometrics is now widely embedded in our everyday lives such as fingerprint scanning and lately face recognition in our smart phones, we can also be identified by the way we behave by means of \textit{behavioral biometrics}.
-Voice and gait recognition are examples of behavioral biometrics, however the topic of this project revolves around \textit{keystroke dynamics} which involves measuring a user's typing patterns on a keyboard.
-Every individual has their own way of typing on computer keyboards, and this can be taken advantage of by authenticating users by measuring the angle, pressure or timings of keypresses, which the latter will be our focus.
+While biological biometrics is now widely embedded in our everyday lives such as fingerprint scanning and lately face recognition in our smart phones, we can also be identified by the way we behave, i.e. by means of \textit{behavioral biometrics}.
+Voice and signature recognition are examples of behavioral biometrics, however the topic of this project revolves around \textit{keystroke dynamics} which involves measuring a user's typing patterns on a keyboard.
+Every individual has their own way of typing on computer keyboards, and this can be taken advantage of by authenticating users by measuring for example the pressure or timings of keypresses, of which the latter will be our focus.
 Examples of such timings can be the time of when keys are pressed or released. 
 
 Authentication can be used both for giving access (\textit{static authentication}) and removing access (\textit{dynamic authentication}).
 When a user claims an identity and writes the correct password, the biometric system can compare the typing pattern in the written password to the way the true owner of the identity writes the same password.
-If the patterns match, they may be given access.
+If the patterns match, the user will be given access.
 This is an example of static authentication using \textit{fixed-text} keystroke dynamics.
 
 Keystroke dynamics can also be used for dynamic authentication.
 Even after a user is logged into a given system using \textit{static authentication}, they can continue being authenticated by a background process after the initial log-in, removing their access if they are believed to be an imposter.
 Dynamic authentication based on keystroke dynamics can be done by two different methods: \textit{periodic} or \textit{continuous authentication}.
-With periodic authentication (PD), the system collects keystroke timing information over a period of time, and retroactively analyses the collected data.
+With periodic authentication (PA), the system collects keystroke timing information over a period of time, and retroactively analyzes the collected data.
 It will then analyze the statistical properties derived from the data, decide if they fit the properties of the genuine user and remove access if they do not fit.
-Systems with continuous authentication (CA) will check if the user is genuine after each action they perform.
+Systems with continuous authentication (CA) will check if the user is genuine after each keystroke action they perform.
 
-Authors of PD systems generally refer to their systems as \textit{continuous authentication}, however we will in this project refer to them as \textit{periodic authentication}. 
+Authors of PA systems generally refer to their systems as \textit{continuous authentication}, however we will in this project refer to them as \textit{periodic authentication}. 
 The reason for this is that the word "continuous" implies checks being performed after every action, while PA systems require a greater number of actions before the check is initiated. 
-This was first pointed out by Patrick Bours \cite{BOURS201236} in his CA study.
+This was first pointed out by Bours \cite{BOURS201236} in his CA study.
 
 A great benefit to CA is that the system can make a decision every time the user presses a key, whereas impostors have time to perform a certain amount of potentially harmful keystroke actions in-between identity verifications in PA systems.
 On the other hand, CA systems can not take advantage of statistical analysis like PA systems can.
-Therefore, we would like to investigate if extending an existing CA system with PA system can remove the inherent disadvantages of both types of systems as well as significantly improve the performance of the CA system.
+Therefore, we would like to investigate if extending an existing CA system with a PA system can remove the inherent disadvantages of both types of systems as well as significantly improve the performance of the CA system.
 
 
 % This section specifies the general area of the project.
@@ -224,7 +224,7 @@ Behavioral biometrics; keystroke dynamics; continuous authentication; periodic a
 %\end{enumerate}
 
 \section{Problem description}
-While many systems and applications rely on static authentication such as log-in processes, most systems do not perform further authentication to ensure that the current user has not changed since logging in.
+While many systems and applications rely on static authentication, such as log-in processes, most systems do not perform further authentication to ensure that the current user has not changed since logging in.
 Physically leaving an unlocked computer unattended is not an uncommon practice in many work environments, which opens up for free and unauthorized access by anyone willing to seize the opportunity.
 The longer the genuine user is absent, the more time unauthorized users have to access information or cause damage to any part of the system.
 Restricting the amount of actions intruders can perform is therefore needed in order to reduce the damage potential.
@@ -302,19 +302,20 @@ As improving the CA system's accuracy would lead to imposters being detected mor
 %\item What would be the overall ROI (Return On Investment) of your project if carried out?
 %\end{enumerate}
 
-\section{Research questions}\label{research:questions}
+\section{Research questions}
+\label{research:questions}
+In this project, we will aim to answer the following research question:
+\begin{itemize}
+    \item \textit{Can incorporating periodic authentication methods into a continuous authentication system for keystroke dynamics significantly improve the original system's imposter detection performance?}
+\end{itemize}
+To be able to answer this research question, a number of sub-questions should also be considered.
+They can be addressed in any order, as answering one of them does not depend on already having answered the others.
+The sub-questions are as follows:
 \begin{enumerate}
-\item Can incorporating periodic authentication into a continuous authentication system for keystroke
-dynamics significantly improve the original system's imposter detection accuracy?
-%\item Can extending a continuous authentication system with periodic authentication significantly improve imposter detection accuracy?
-\begin{enumerate}
-\item Which incorporated PA system can lead to the best results in terms of accuracy?
-\item Which incorporated PA system can lead to the best results in terms of computational performance?
+\item \textit{Which PA system can lead to the best results in terms of detection performance when incorporated into the CA system?} Here we want to know which PA system cause the combined system to catch the most imposters, and how fast it does so. We also want it to mistake genuine users for being imposters as rarely as possible.
+\item \textit{What is the impact on computational performance when incorporating a PA system into the CA system?} Continuous and periodic authentication systems are meant to operate transparently in the background. Therefore, we want every verification process to be performed quickly in order to avoid slowing down the user's machine.
+\item \textit{How can the decision of the PA system be used by the CA system?} If the PA system believes the current user is an imposter, it can either remove access immediately or cause the CA system to place less trust in the user. We want to know which approach gives the best results.
 
-%\item Which combination of distance measures gives the best result in terms of accuracy?
-%\item Which combination of distance measures gives the best result is terms of computational performance?
-\item Should the PA and CA system make collective or separate decisions?
-\end{enumerate}
 \end{enumerate}
 %--------------------------
 %\\\\
@@ -365,7 +366,7 @@ The PA system to be incorporated into the CA system is more likely to consist of
 %\item Why/why not is it realistic that the planned contribution can be achieved?  You may want to have a look at relevant literature/ other completed master thesis to answer this question.
 %\end{enumerate}
 
-\chapter{Related work (3-10 pages)}
+\chapter{Related work}
 \label{chap:related}
 This chapter aims to describe the literature relevant to the project.
 In order to discuss the available literature, a few concepts from the field of biometrics must first be explained.
@@ -664,7 +665,7 @@ Therefore, this chapter is concluded with \Cref{tab:summary}, where the properti
 %\item Is the chapter sufficiently comprehensive?
 %\end{enumerate}
 
-\chapter{Choice of methods (2-5 pages)}
+\chapter{Choice of methods}
 %NOTE: Quantitative?
 \section{Literature study}
 Even though a literature study has already been performed, the project period will begin with an additional literature review.
@@ -765,7 +766,7 @@ Since we are incorporating PA into an existing CA system, the focus will be on m
 %\end{itemize}
 
 
-\chapter{Milestones, deliverables and resources (2-5 pages)}
+\chapter{Milestones, deliverables and resources}
 %\begin{landscape}
 %\begin{ganttchart}[
 %hgrid,
@@ -896,7 +897,7 @@ As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be us
 %resource requirements.  This is particularly useful if you have broken
 %down the task into a lot of small tasks.
 %
-\chapter{Feasibility study (1/2-3 pages)}
+\chapter{Feasibility study}
 An analysis of why it is likely that the desired
 results can be produced within the given time and
 resource bounds.  This may include a description of
@@ -907,7 +908,7 @@ resource bounds.  This may include a description of
 Alternatively you can explain an 'approximate' solution.
 \end{itemize}
 
-\chapter{Risk analysis (1/2-2 pages)}
+\chapter{Risk analysis}
 %There is a certain risk of health issues hindering the project.
 %Though I generally have no issues regarding health, the possibility of illness or injury can not be neglected.
 This chapter contains a risk analysis for the project period.
@@ -1038,7 +1039,7 @@ Therefore, trying to remediate this event any further is part of the project its
 
 
 
-\chapter{Ethical and legal considerations (1/4-1 page)}
+\chapter{Ethical and legal considerations}
 Doing research in the biometrics field can bring ethical problems and legal considerations as it often involves collecting highly sensitive information from volunteers contributing to the project.
 This is especially true for unconstrained free-text keystroke dynamics, as the data collected involves not only measurement of the biometric trait, but also information that can be analyzed to uncover the semantics and context of what the participants typed on their private computers as long as the BeLT software was recording.
 
