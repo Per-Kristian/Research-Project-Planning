@@ -388,10 +388,6 @@ Using digraphs as an example, the available latencies are as follows \cite{monda
 \end{itemize}
 
 With these concepts now explained, the related literature can be presented.
-Periodic \textit{identification} systems are included in this chapter.
-These systems attempt to recognize who the user is without them claiming an identity first.
-While generally having more computationally expensive matching algorithms than authentication systems, they may still have other relevant properties such as feature comparison methods which can also be used for authentication.
-
 The CA system we will be extending is first summarized in \Cref{sec:related-CA} in order to allow for further discussions on what PA techniques may result in a good fit for our project.
 
 \section{Continuous authentication}
@@ -439,11 +435,14 @@ We are likely to divide the dataset in a similar way to avoid distorting the per
 %An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
 %That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, 
 
-\section{Other relevant systems}
+\section{Periodic authentication}
 \label{sec:related-other}
 There is a significant amount of available literature on PA systems.
 Discussing it all is beyond the scope of this project plan. The focus will therefore mostly be on research achieving viable results using free-text authentication and having potential for being incorporated into the CA system.
 This section will present the various options available to us from literature regarding methods used for PA.
+Periodic \textit{identification} systems are also included in this section.
+These systems attempt to recognize who the user is without them claiming an identity first.
+While generally having more computationally expensive matching algorithms than authentication systems, they may still have other relevant properties such as feature comparison methods which can also be used for authentication.
 
 A more extensive and detailed literature study is being delivered in IMT4215 Specialization Project.
 The literature discussed in this section usually refer to their own solutions as CA, however we will refer to them as PA if they are not truly continuous due to the reason stated in \Cref{sec:topic}.
@@ -473,8 +472,8 @@ ANIA = \frac{block size}{(1-FMR)} = \frac{800}{(1-0.00005)} \approx 800
 ANGA = \frac{block size}{FNMR} = \frac{800}{0.04833} \approx 16553
 \end{equation}
 
-Genuine user's are rarely rejected with this ANGA rate, which is also the case in Mondal's \cite{mondal} CA system.
-However, the ANIA rate is higher than that of the original CA system (499).
+Genuine users are rarely rejected with this ANGA rate, which is also the case in Mondal's \cite{mondal} CA system.
+However, the ANIA rate is higher than that of the original CA system which was 499.
 We would prefer a lower ANIA rate than 800 so that the PA system will in more cases have a chance to make a decision before the CA system has already removed access from the current user.
 This way we can make more use of both authentication systems, which will hopefully impact our research subquestion regarding achieving a better accuracy.
 
@@ -817,10 +816,51 @@ Since we are incorporating PA into an existing CA system, the focus will be on m
 %\end{ganttchart}
 %\end{landscape}
 \section{Resources}
-The only resource 
+As stated earlier, we will be using the dataset from Mondal's PhD thesis \cite{mondal}. The project's supervisor is in possession of this dataset.
+No other resources are required, as the work will be done on personal computers.
+A request will be made for a dedicated workspace on campus, however this is by no means mandatory.
+
+\section{Preliminary table of contents}
+Below is a representation of the planned structure of the MSc thesis.
+This will help for planning what needs to be written throughout the project period, as well as providing a.. %NOTE HERE I AM
+
+Title page\\
+Abstract\\
+Acknowledgements\\
+Table of Contents\\
+List of Tables\\
+List of Figures\\
+\\
+\textbf{Introduction}\\
+\indent Topic covered by the project\\
+\indent Keywords\\
+\indent Problem description\\
+\indent Justification, motivation and benefits\\
+\indent Research questions\\
+\indent Planned contributions\\
+\textbf{Background}\\
+\indent Authentication\\
+\indent Keystroke Dynamics\\
+\textbf{Related work}\\
+\indent Continuous authentication\\
+\indent Periodic authentication\\
+\textbf{Authentication system}\\
+\indent Design\\
+\indent Modules\\
+\indent PA/CA interaction mechanism\\
+\textbf{Analysis}\\
+\indent Performance analysis using CA statistical approach\\
+\indent Performance analysis using CA machine learning approach\\
+\indent Summary of results\\
+\textbf{Future work}\\
+\textbf{Conclusion}\\
+\textbf{Bibliography}\\
+\textbf{Appendixes}
 
 \section{Implementing CA statistical approach}
-As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period.
+As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period. 
+
+
 
 
 %The purpose of this chapter is to convince the reader that you know exactly what to do.
