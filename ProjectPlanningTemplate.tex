@@ -46,7 +46,7 @@
 
 \begin{document}
 
-\thesistitle{Combining Periodic and Continuous Authentication}
+\thesistitle{Combining Periodic and Continuous Authentication using Keystroke Dynamics}
 \thesisauthor{Per-Kristian Nilsen}
 \thesisdate{\gucmasterthesisdate}
 \useyear{2017}
@@ -72,24 +72,24 @@ NTNU in Gj\{ovik
 }
 
 
-\chapter*{Revision history}
-
-\begin{center}
-\begin{tabular}[H]{|l|p{35em}|}
-\hline
-Version \#  & Description of change (why, what where - a few sentences)\\
-\hline
-      0.1   & First version made available via Fronter\\
-\hline
-      0.2   & Corrected some spelling mistakes and added 'control questions' to Abstract, chapter 1 and 2\\
-\hline
-      0.2.1   & Removed the reference to a dead link in chapter 1 (keywords).\\
-\hline
-      0.2.1   & Replaced HIG logo by NTNU logo (just in case it is not done!) and removed references to information security\\
-	\hline
-\end{tabular}
-\end{center}
-\newpage
+%\chapter*{Revision history}
+%
+%\begin{center}
+%\begin{tabular}[H]{|l|p{35em}|}
+%\hline
+%Version \#  & Description of change (why, what where - a few sentences)\\
+%\hline
+%      0.1   & First version made available via Fronter\\
+%\hline
+%      0.2   & Corrected some spelling mistakes and added 'control questions' to Abstract, chapter 1 and 2\\
+%\hline
+%      0.2.1   & Removed the reference to a dead link in chapter 1 (keywords).\\
+%\hline
+%      0.2.1   & Replaced HIG logo by NTNU logo (just in case it is not done!) and removed references to information security\\
+%	\hline
+%\end{tabular}
+%\end{center}
+%\newpage
 
 \begin{abstract}
 Abstract
@@ -306,7 +306,7 @@ As improving the CA system's accuracy would lead to imposters being detected mor
 \label{research:questions}
 In this project, we will aim to answer the following research question:
 \begin{itemize}
-    \item \textit{Can incorporating periodic authentication methods into a continuous authentication system for keystroke dynamics significantly improve the original system's imposter detection performance?}
+    \item \textit{Can incorporating periodic authentication methods into a continuous authentication system using keystroke dynamics significantly improve the original system's imposter detection performance?}
 \end{itemize}
 To be able to answer this research question, a number of sub-questions should also be considered.
 They can be addressed in any order, as answering one of them does not depend on already having answered the others.
@@ -338,15 +338,23 @@ The sub-questions are as follows:
 %\end{enumerate}
 
 \section{Planned contributions}
-The intended contribution of this project is to extend a previously proposed CA system with a PA system in order to improve the imposter detection accuracy of the original system.
-The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystroke actions on average. 
-Between 0.9\% and 1.3\% of imposters go undetected.
-Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user can perform 16057 keystroke actions on average before the system mistakes them for being an imposter.
-By incorporating a PA system into the CA system, the aim is to improve these performances, also measuring our own results in terms of ANIA and ANGA rates as well as the number of undetected imposters.
+The indented contribution of this project is to implement a previously proposed CA system \cite{mondal} and extend it with a PA system.
+The PA system to be incorporated into the CA system is more likely to consist of a custom combination of methods from existing research, as opposed to using an entire PA system as it is described by its original authors.
 
-We also aim to keep computational costs low enough to be used transparently on machines with the computational power of an average household laptop.
-This is important in case our combined CA/PA system is to be implemented as a real-time application in some future project.
-The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, as opposed to using an entire PA system as it is described by its original authors.
+When implemented, the imposter detection performance of both the CA system and the combined CA/PA system will be analyzed, and the results will be presented.
+Furthermore, we will present an analysis of how the CA system's computational performance is affected by the PA extension.
+A comprehensive state-of-the-art overview of CA and PA systems will also be given.
+
+%The intended contribution of this project is to extend a previously proposed CA system \cite{mondal} with a PA system in order to improve the imposter detection accuracy of the original system.
+%Software implementations of the combined system will be written in order to test 
+%The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystroke actions on average. 
+%Between 0.9\% and 1.3\% of imposters go undetected.
+%Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user can perform 16057 keystroke actions on average before the system mistakes them for being an imposter.
+%By incorporating a PA system into the CA system, the aim is to improve these performances, also measuring our own results in terms of ANIA and ANGA rates as well as the number of undetected imposters.
+
+%We also aim to keep computational costs low enough to be used transparently on machines with the computational power of an average household laptop.
+%This is important in case our combined CA/PA system is to be implemented as a real-time application in some future project.
+%The PA system to be incorporated into the CA system is more likely to consist of a custom combination of techniques from existing research, as opposed to using an entire PA system as it is described by its original authors.
 %\\\\
 %---------------------
 %\\\\
@@ -390,22 +398,23 @@ Using digraphs as an example, the available latencies are as follows \cite{monda
 
 With these concepts now explained, the related literature can be presented.
 The CA system we will be extending is first summarized in \Cref{sec:related-CA} in order to allow for further discussions on what PA techniques may result in a good fit for our project.
+Relevant PA systems are then discussed in \Cref{sec:related-other} with focus on classification methods, before a quick overview of other important aspects of the literature is given in \Cref{sec:related-overview}.
 
 \section{Continuous authentication}
 \label{sec:related-CA}
 The CA system to be extended was a part of the doctoral thesis of Soumik Mondal \cite{mondal}, where a \textit{trust model} was used to lock imposters out.
-Similarly to Bours' CA study \cite{BOURS201236}, Mondal's trust model worked by comparing a single key action and digraphs (two consequtive key actions) to the genuine user's reference and having the result impact the current \textit{trust level} by means of a penalty-and-reward system.
+Similarly to Bours' CA study \cite{BOURS201236}, Mondal's trust model worked by comparing a single key action and digraphs (two consecutive key actions) to the genuine user's reference and having the result impact the current \textit{trust level} by means of a penalty-and-reward system.
 
 After the initial static authentication, the user's trust level was set to 100, being the highest achievable level.
-Typing patterns deviating from the reference would cause penalties in the form of lowering the trust level, while patterns complying with the reference would cause rewards to be given in the form of increasing the trust of the user's genuineness.
+Probe typing patterns deviating from the reference would cause penalties in the form of lowering the trust level, while probe patterns complying with the reference would cause rewards to be given in the form of increasing the trust of the user's genuineness.
 A \textit{lockout threshold} was set to a value below 100, and should the current user's trust level fall below said threshold, they would be locked out.
 Ideal results would have had genuine users' trust levels never dropping below the threshold, while all imposters' levels would drop below the threshold after a small amount of actions performed.
 
-An important part of the trust model was to determine how big of a reward or penalty should be given per action performed.
+An important part of the trust model was to determine how big a reward or penalty should be given per action performed.
 For CA based on keystroke dynamics alone, Mondal \cite{mondal} presented and used an implementation of a trust model referred to as \textit{Dynamic Trust Model (DTM)}.
 The size of the reward or penalty was determined by a single continuous function based on a \textit{classification score} computed by comparing the probe to the reference.
-The larger the difference between the classification score and an arbitrary threshold (not to be confused with the lockout threshold), the larger the penalty or reward became.
-Therefore, an action with a classification score just below the threshold separating penalty and reward would only result in a small decrease in trust level.
+The larger the difference between the classification score and comparison threshold (not to be confused with the lockout threshold), the larger the penalty or reward became.
+Therefore, an action with a classification score just below the comparison threshold would only result in a small decrease in trust level.
 
 For keystroke action classification, Mondal followed a machine learning approach and two statistical approaches.
 The first statistical approach (SA-1) used Scaled Euclidian Distance (SED) for \textit{Single Key Actions} and a combination of SED and Correlation Distance for \textit{Key Digraph Actions} for calculating the classification score to be used in the DTM. 
@@ -416,10 +425,16 @@ In Mondal's \cite{mondal} machine learning approach, an \textit{Artificial Neura
 The overall best machine learning results were achieved by training the classifier with data from the genuine user and from a set of imposter users, which in the original study \cite{mondal} was called Verification Process 3 (VP-3).
 Testing was done with data from the genuine user which was not used for training and with data from the remaining imposters not involved in training.
 This scenario is applicable in many cases, including the use on personal computers, as it shows the performance when imposters are not other users of the same system.
-The performance achieved was an ANGA rating of 16057 and an ANIA rating of 499, with 1.3\% of imposters not being detected.
+%The CA system to be extended \cite{mondal} has an Average Number of Imposter Actions (ANIA) rate of 499, meaning that it manages to detect imposters after 499 keystroke actions on average. 
+%Furthermore it has an Average Number of Genuine Actions (ANGA) rate of 16057, which means that the genuine user can perform 16057 keystroke actions on average before the system mistakes them for being an imposter.
+The performance was measured in terms of \textit{Average Number of Imposter Actions (ANIA)} and \textit{Average Number of Genuine Actions (ANGA)}, as well as number of imposters going undetected.
+The ANIA rate represents the number of keystroke actions needed on average before imposters are detected, while the ANGA rate tells how many keystroke actions genuine users can perform on average before they are mistaken for being an imposter.
+
+VP-3 achieved an ANGA rating of 16057 and an ANIA rating of 499, with 1.3\% of imposters not being detected.
 When compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, one could argue that the VP-3 machine learning approach performed better due to imposters being rejected faster on average, and the genuine user being rejected less often.
 However, SA-1 catches a larger percentage of imposters than what VP-3 does, which certainly is an important result.
-Therefore, we plan to implement both SA-1 and VP-3 in this project, as there are benefits to both.
+%Therefore, we plan to implement both SA-1 and VP-3 in this project, as there are benefits to both.
+%NOTE: Supervisor suggests removing this last sentence.
 
 Mondal's dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
 The data was collected in a completely unconstrained manner by having the participants install a tool for logging keystrokes and mouse events on their own computers.
@@ -430,8 +445,8 @@ Mondal reports that it has an average of 47600 keystroke events per participant.
 In his approach, he used 35\% of a user's recorded keystrokes for training, up to a maximum of 20000.
 This is a sufficient amount of data seen in relation to the sizes of references used in state of the art PA studies.
 Furthermore, 10\% was used for adjusting the parameters of the algorithms, and the rest was used for testing.
-We are likely to divide the dataset in a similar way to avoid distorting the performance in any direction. 
-%NOTE: Are these datasets described?
+%We are likely to divide the dataset in a similar way to avoid distorting the performance in any direction. 
+%NOTE: Supervisor suggests removing this last sentence.
 
 %An average of 700 000 events were provided per participant, of which an average of $12.4\%$ ($\pm7.7\%$) are keystroke events.
 %That leaves us with an average of 86800 ($\pm53900$) keystroke events to use for testing, 
@@ -445,7 +460,7 @@ Periodic \textit{identification} systems are also included in this section.
 These systems attempt to recognize who the user is without them claiming an identity first.
 While generally having more computationally expensive matching algorithms than authentication systems, they may still have other relevant properties such as feature comparison methods which can also be used for authentication.
 
-A more extensive and detailed literature study is being delivered in IMT4215 Specialization Project.
+A more extensive and detailed literature study \cite{nilsenSpec} is being delivered in IMT4215 Specialization Project.
 The literature discussed in this section usually refer to their own solutions as CA, however we will refer to them as PA if they are not truly continuous due to the reason stated in \Cref{sec:topic}.
 
 \subsection{Statistical approaches}
@@ -909,8 +924,6 @@ Alternatively you can explain an 'approximate' solution.
 \end{itemize}
 
 \chapter{Risk analysis}
-%There is a certain risk of health issues hindering the project.
-%Though I generally have no issues regarding health, the possibility of illness or injury can not be neglected.
 This chapter contains a risk analysis for the project period.
 An attempt to estimate probability and impact of undesired events has been made, and the result can be seen in \autoref{tab:risk-analysis}.
 The state of the risks have been visualized in \autoref{tab:initial-risk} and \autoref{tab:residual-risk}, before and after preventive or remedial actions have been considered.
@@ -918,8 +931,6 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 
 \begin{table}[H]
 \scriptsize
-\caption{Risk analysis for project period}
-\label{tab:risk-analysis}
 \begin{tabular}{c| p{1.3cm}|p{1.5cm}|p{0.94cm}|p{2.5cm}|p{2.2cm}|p{1.7cm}|}
 \hhline{~|------}
 & \bf Identifier & Impl. CA & Illness & Impl. PA & Injury & Beh. sched.\\ \hhline{~|------|}
@@ -935,15 +946,14 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 \hhline{~|------|}
 
 %add more rows as required
-
 \end{tabular}
+\caption{Risk analysis for project period}
+\label{tab:risk-analysis}
 \end{table}
 
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{Initial risk matrix}
-\label{tab:initial-risk}
 \begin{tabular}{|m{1.75cm}|m{1.75cm}|m{1.75cm}| m{1.75cm} |m{1.75cm}| m{1.75cm}|m{0cm}}
 \hhline{|------|} \bf Probability/ Impact & \bf 1-Very unlikely & \bf 2-Unlikely & \bf 3-Possible & \bf 4-Likely & \bf 5-Very likely & \\[10pt]
 
@@ -956,6 +966,8 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 \hhline{|------|} \bf 1-Minor & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} & \\ [10pt]
 \hhline{|------|}
 \end{tabular} \\
+\caption{Initial risk matrix}
+\label{tab:initial-risk}
 \end{table}
 
 \begin{table}[H]
