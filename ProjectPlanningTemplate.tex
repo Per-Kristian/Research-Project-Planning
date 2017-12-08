@@ -12,6 +12,7 @@
 %\usepackage{pslatex} %% Doesn't seem to work - i.e. convert .eps to .pdf
  
 \usepackage{enumitem}
+\usepackage{cite}
 \usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}     % For utf8 encoded .tex files
 %\usepackage[latin1]{inputenc}
@@ -433,7 +434,7 @@ The ANIA rate represents the number of keystroke actions needed on average befor
 VP-3 achieved an ANGA rating of 16057 and an ANIA rating of 499, with 1.3\% of imposters not being detected.
 When compared to the best statistical approach (SA-1) having an ANGA rating of 14096 and ANIA rating of 686 with 0.9\% of imposters not detected, one could argue that the VP-3 machine learning approach performed better due to imposters being rejected faster on average, and the genuine user being rejected less often.
 However, SA-1 catches a larger percentage of imposters than what VP-3 does, which certainly is an important result.
-%Therefore, we plan to implement both SA-1 and VP-3 in this project, as there are benefits to both.
+%   Therefore, we plan to implement both SA-1 and VP-3 in this project, as there are benefits to both.
 %NOTE: Supervisor suggests removing this last sentence.
 
 Mondal's dataset consisted of mouse and keystroke data collected from 53 participants who were either students or university staff.
@@ -491,17 +492,18 @@ ANGA = \frac{block size}{FNMR} = \frac{800}{0.04833} \approx 16553
 Genuine users are rarely rejected with this ANGA rate, which is also the case in Mondal's \cite{mondal} CA system.
 However, the ANIA rate is higher than that of the original CA system which was 499.
 We would prefer a lower ANIA rate than 800 so that the PA system will in more cases have a chance to make a decision before the CA system has already removed access from the current user.
-This way we can make more use of both authentication systems, which will hopefully impact our research subquestion regarding achieving a better accuracy.
+This way we can make more use of both authentication systems, which will hopefully impact our \textit{research sub-question 1} regarding detection performance.
 
-Apart from accuracy, we must also take computational performance into account to discuss \textit{research question 1.b}.
+Apart from accuracy, we must also take computational performance into account to discuss \textit{research sub-question 2}.
 Gunetti and Picardi's \cite{gnp} system used 140 seconds per authentication, which was a clear issue.
 Granted, this was on a Pentium 4 processor, and more modern CPUs should provide significantly better performance.
 The reason for the suffering computational performance was a sub-optimal classification algorithm which compared a probe sample to every single legal user's reference in the system, which in their experiment was 40 users.
-%This is useful for periodic \textit{identification}, where the system attempts to recognize who the user is without them claiming an identity first.
+This is useful for periodic \textit{identification}, where the system attempts to recognize who the user is without them claiming an identity first.
 We would prefer to avoid using such an algorithm in our project in order to keep processing costs at a minimum.
+Simply modifying the algorithm to not consider all users per verification process could be an option for increasing the speed, however we can not predict the impact that would have on the detection performance.
 %For 
 
-Several other researchers have also used Gunetti and Picardi's A and/or R distances \cite{Kolakowska2011, Messerman, meaningless, hu, davoudi2009, davoudi2010, superResults, Pinto2014, sliding}.
+Several other researchers have also used Gunetti and Picardi's A and/or R distances \cite{davoudi2009, davoudi2010, superResults, hu, sliding, Kolakowska2011, Messerman, Pinto2014, meaningless}.
 %NOTE INCLUDE SOME OF THESE IN SPEC PROJ?
 Of these, especially Ferreira and Santos \cite{superResults} stand out as they attempted to tackle both the block size and computational performance problems of Gunetti and Picardi's \cite{gnp} study.
 They used a block size of 250 keystrokes, achieving an Equal Error Rate (EER) of 1.4\%, meaning the FMR and FNMR are equal at that percentage.
@@ -511,8 +513,8 @@ The PA's ANGA is also in an acceptable range which should not lead to very many 
 
 As opposed to Gunetti and Picardi's solution, Ferreria and Santos' system only compared probes to the reference of the claimed identity, assuring fast computation.
 The size of the reference used was 11250 keystrokes, which is comparable to Mondal's training sets, as mentioned in \cref{sec:related-CA}.
-Their method involved extracting single keystroke dwell times and and digraph \textit{flight times}.
-Flight time is a commonly used term for the latency between the release of one key to the pressing of the next.
+Their method involved extracting single keystroke dwell times and and digraph flight times.
+%Flight time is a commonly used term for the latency between the release of one key to the pressing of the next.
 Furthermore they also used press-press latencies of 2-, 3-, and 4-graphs, similarly to Gunetti and Picardi \cite{gnp}.
 
 An important aspect of their system was to identify the 10\% most consistent n-graphs with regards to extracted features.
@@ -523,11 +525,10 @@ They also performed their experiments on data collected in an unconstrained mann
 This increases the possibility of achieving similar performance in our implementation.
 
 Other statistical methods than the A and R measures have also been used in literature.
-When regarding both CA and PA systems, we have found systems using Correlation distance \cite{mondal}, Euclidian distance \cite{Monrose, Kaneko}, Scaled Euclidian distance \cite{mondal}, Kolmogorov-Smirnov Test \cite{park}, Manhattan distance \cite{Kaneko} and Scaled Manhattan distance \cite{BOURS201236}.
-%NOTE HER ER JEG.
+When regarding both CA and PA systems, we have found systems using Correlation distance \cite{mondal}, Euclidian distance \cite{Kaneko, Monrose}, Scaled Euclidian distance \cite{mondal}, Kolmogorov-Smirnov Test \cite{park}, Manhattan distance \cite{Kaneko} and Scaled Manhattan distance \cite{BOURS201236}.
 %NOTE FIX FØRSTE SETNING UNDER HER.
 Kaneko et al. \cite{Kaneko} applied several metrics, namely Euclidean distance, Manhattan distance, a proposed custom distance and Gaussian probability density function. Results showed that Euclidean distance performed best, however the experiment setting was writing a fixed Japanese text of around 200 keystrokes.
-It is hard to know whether this would be true for the dataset to be used in our project, due to the large differences in data collection methods.
+It is hard to know whether the results would be similar for the dataset to be used in our project, due to the large differences in data collection methods.
 %NOTE: Kolakowska not present in specialization project?
 
 \subsection{Machine learning approaches}
@@ -539,9 +540,9 @@ If the current user types a digraph to be used for authentication which was neve
 They achieved an FMR of 0.0152\% and FNMR of 4.82\% with a block size of 500 keystrokes and considering single key dwell times and digraph flight.
 As this can be converted to an ANIA of 500 and ANGA of 10373, it could fit the CA system as it's ANIA of 499 is an \textit{average}, and can therefore be much higher in some cases.
 In those cases, a block size of 500 would be small enough to trigger an authentication faster than the CA system could lock the user out.
-They also state that their system is much faster than Gunetti and Picardi's system, which further supports our \textit{research question 1.b}.
+They also state that their system is much faster than Gunetti and Picardi's system, which further supports our \textit{research sub-question 2}.
 
-Other methods related to machine learning have also been used in CA and PA systems, such as k-means clustering \cite{KIM2017, Solami}, kernel ridge regression \cite{900words} and k-nearest neighbor \cite{hu, monaco}.
+Other machine learning methods have also been used in CA and PA systems, such as k-means clustering \cite{KIM2017, Solami}, kernel ridge regression \cite{900words} and k-nearest neighbor \cite{hu, monaco}.
 Support vector machine was also used in Mondal's \cite{mondal} CA system along with a neural network, as mentioned in \Cref{sec:related-CA}.
 
 
@@ -556,8 +557,8 @@ Since we are not restricted to using the entire systems as they are described by
 \subsection{Data collection}
 \label{sec:related-overview-collection}
 The approaches used for experimental data collection is interesting for the project, as some are more similar to Mondal's \cite{mondal} unconstrained collection approach than others.
-There are other several studies with unconstrained data collection \cite{Pinto2014, Ahmed, superResults, Janakiraman2007, sliding, BOURS201236}, whereas some studies constrained the participants to typing freely into a webform \cite{gnp, Solami, davoudi2009, davoudi2010}.
-Other studies had the participants perform specific tasks \cite{900words, monaco, Monrose, KIM2017, park}, such as writing a long fictional text.
+There are several other studies with unconstrained data collection \cite{Ahmed, BOURS201236, superResults, sliding, Janakiraman2007,  Pinto2014}, whereas some studies constrained the participants to typing freely into a webform \cite{davoudi2009, davoudi2010, gnp, Solami}.
+Other studies had the participants perform specific tasks \cite{KIM2017, monaco, Monrose,  park, 900words}, such as writing a long fictional text.
 Hu et al. \cite{hu} had all participants write a static text, while Kim et al. \cite{KIM2017} assigned different such texts to every participants to simulate free-text.
 With regards to participants included in experiments, ten researches had 30 or more participants \cite{Messerman, gnp, Ahmed, superResults, KIM2017, 900words, sliding, Monrose, park, monaco}.
 One of these had 2000 participants \cite{900words}.
@@ -574,7 +575,7 @@ Block size in periodic systems is also relevant to look at, as a small block siz
 Seven studies used a block size of 500 keystrokes or less \cite{superResults, Messerman, Pinto2014, Ahmed, hu, park}.
 Studies achieving good performance using such a small amount of keystrokes are important to consider when we are to implement the PA part of the project.
 However, more factors must also be taken into consideration, as for example one of the studies with small block size used static text instead of free-text \cite{hu}.
-Therefore, this chapter is concluded with \Cref{tab:summary}, where the properties of the related studies can be seen in separate contexts.
+Therefore, this chapter is concluded with \Cref{tab:summary}, where an overview of the properties of the related studies can be found.
 
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
