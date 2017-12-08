@@ -698,8 +698,9 @@ Furthermore, we will review Mondal's \cite{mondal} thesis in order to prepare ou
 
 \section{System setup}
 As our research questions are aimed at investigating if the CA system's performance can be improved, our first major task will be to implement the CA system.
-To be able to truly know if we have improved it in the end, we must reproduce it in the same way it was originally described by Mondal \cite{mondal}.
-We should be able to achieve the same or similar performance as we are using the same dataset as he did for his experiments.
+%To be able to truly know if we have improved it in the end, we must reproduce it in the same way it was originally described by Mondal \cite{mondal}.
+%Removed above sentence after feedback.
+We should be able to achieve the same or similar performance as we are using the same dataset as Mondal \cite{mondal} did for his experiments.
 
 It was mentioned in \Cref{sec:related-CA} that SA-1 was the best statistical approach in Mondal's work.
 Specifically, it outperformed SA-2 significantly both in terms of ANIA and ANGA rates, as well as the number of undetected imposters.
@@ -708,7 +709,7 @@ We will also be implementing the VA-3 approach in order to measure the impact of
 
 In general for both approaches, we will have to implement feature extraction, a Keystroke Matching Module, a method for score calculation, the Dynamic Trust Model and a Decision Module.
 These are all parts of Mondal's CA system \cite{mondal}, as described in \Cref{sec:related-CA}.
-The Keystroke Matching Module will in differ between the SA-1 and VP-3 implementations, as this is where the keystroke features are compared using either distance metrics or machine learning.
+The Keystroke Matching Module will differ between the SA-1 and VP-3 implementations, as this is where the keystroke features are compared using either distance metrics or machine learning.
 
 In addition to implementing both approaches of the CA system, we will also have to implement a PA system.
 It will generally have a similar set of modules, though the Dynamic Trust Module is specific to the CA.
@@ -716,14 +717,14 @@ It will generally have a similar set of modules, though the Dynamic Trust Module
 When we have decided upon which keystroke features to use in our PA system, we must implement a mechanism for extracting said features from the dataset, based on the chosen block size.
 Furthermore we need functionality for building user references, as well as a PA Keystroke Matching Module.
 This matching module may then produce a matching score or distance which the PA Decision Module will use to determine whether the testing data, which may be seen as a simulated probe, matches the reference.
-The interaction between the PA and CA system shown in \Cref{fig:system-diagram} is one option we face for addressing \textit{research question 1.c}.
+The interaction between the PA and CA system shown in \Cref{fig:system-diagram} is one option we face for addressing \textit{research sub-question 3}.
 In this option, the match/non-match decision from the PA system is used to influence the CA trust level.
 For example, if the block of keystrokes was found to not match the reference in the PA system, the CA system could issue a penalty in the form of lowering the trust value by a static amount.
 If the trust level already was low, this could force it below the lockout threshold, which would cause the CA system to remove the current user's access as mentioned in \Cref{sec:related-CA}.
 
 Another option could be to omit the PA system's Decision Module and instead let it provide the CA system with a classification score (or distance).
 The Dynamic Trust Model could then calculate how much to raise or lower the current trust level, similarly to what it already does with the CA classification score.
-Further options will be explored and possibly tested in the project period.
+Further options will be explored and tested in the project period.
 
 \begin{figure}[h]
     \centering
@@ -759,7 +760,7 @@ These two impact values may also be asymmetrical, i.e. periodic non-matches coul
 There is clearly a large number of possible combinations of impact values, and we would naturally want to know which combination would give the best performance.
 Optimizing these values using a relatively small subset of the users before applying them to the entire dataset could help us avoid a situation where performance of our system is significantly better on our dataset than on other unconstrained datasets.
 
-We are also interested in keeping computational costs as low as possible, as seen in \textit{research question 1.b}.
+We are also interested in keeping computational costs as low as possible, as seen in \textit{research sub-question 2}.
 For this, we would like to analyze the processing time used per authentication.
 Since we are incorporating PA into an existing CA system, the focus will be on minimizing the computational costs introduced by PA as opposed to decreasing the computational cost of the CA system.
 
