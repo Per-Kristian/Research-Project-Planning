@@ -784,6 +784,7 @@ Since we are incorporating PA into an existing CA system, the focus will be on m
 
 
 \chapter{Milestones, deliverables and resources}
+\label{chap:milestones}
 %\begin{landscape}
 %\begin{ganttchart}[
 %hgrid,
@@ -834,15 +835,19 @@ Since we are incorporating PA into an existing CA system, the focus will be on m
 %\end{ganttchart}
 %\end{landscape}
 \section{Resources}
-As stated earlier, we will be using the dataset from Mondal's PhD thesis \cite{mondal}. The project's supervisor is in possession of this dataset.
+\label{sec:milestones-resources}
+The only resource we will need is the dataset from Mondal's PhD thesis \cite{mondal}. The project's supervisor is already in possession of this dataset.
 No other resources are required, as the work will be done on personal computers.
 A request will be made for a dedicated workspace on campus, however this is by no means mandatory.
 
 \section{Preliminary table of contents}
+\label{sec:milestones-toc}
 Below is a representation of the planned structure of the MSc thesis.
-This will help for planning what needs to be written throughout the project period, as well as providing a.. %NOTE HERE I AM
-
-Title page\\
+This will help us plan what needs to be written throughout the project period.
+It is also useful as a context reference for our thesis milestones described in \Cref{sec:milestones-deliverables-thesis}.
+The table of context is temporary and certain parts may be changed, removed or added in the future.
+\\\\
+\noindent Title page\\
 Abstract\\
 Acknowledgements\\
 Table of Contents\\
@@ -869,14 +874,59 @@ List of Figures\\
 \textbf{Analysis}\\
 \indent Performance analysis using CA statistical approach\\
 \indent Performance analysis using CA machine learning approach\\
-\indent Summary of results\\
+\indent Discussion\\
 \textbf{Future work}\\
 \textbf{Conclusion}\\
 \textbf{Bibliography}\\
 \textbf{Appendixes}
 
-\section{Implementing CA statistical approach}
-As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period. 
+\section{Deliverables}
+\label{sec:milestones-deliverables}
+The project has been split into incremental parts in order to help us keep track of progress during the project period.
+Two main deliverables will be produced, with the first being the software implementations of the combined CA/PA system, and the second being the final MSc thesis including analysis results.
+A number of milestones have been set for each of these deliverables, which can be seen in the following subsections.
+
+\subsection{Software implementations}
+\label{sec:milestones-deliverables-software}
+Developing the software implementations of the CA/PA system is important for being able to answer our research question.
+The implementations are needed for producing the data we are to analyze.
+A total of four milestones has been set for this deliverable:
+
+\begin{enumerate}
+    \item \textit{SA-1 implemented:} Having the implementation of the CA system's statistical approach ready is this deliverable's first milestone, as it sets up the next activity which is extending it with a PA system.
+    \item \textit{SA-1 extended:} After having implemented the PA system and incorporated it into SA-1, the first analysis phase can be conducted.
+    \item \textit{VP-3 implemented:} When the first analysis phase is over, the next milestone is having the CA machine learning approach implemented.
+    \item \textit{VP-3 extended:} The last milestone of this deliverable is the machine learning approach of the CA system being extended with a PA system.
+\end{enumerate}
+
+\subsection{Master thesis}
+\label{sec:milestones-deliverables-thesis}
+We have also identified five milestones for the MSc thesis. 
+Three other students have agreed to form a group where we will peer-review each others progress on the theses. 
+Though it is subject to change, we have planned to perform the peer-reviews approximately once per month.
+When the feedback is accounted for, a milestone is regarded as reached, and the current thesis progress is ready to be delivered to the supervisor.
+Our thesis milestones are as follows:
+
+\begin{enumerate}
+    \item \textit{Thesis v.1:} Introduction, Background and Related work ready for delivery.
+    \item \textit{Thesis v.2:} The combined CA/PA system's architecture is presented in the Authentication System chapter. Results from first analysis documented.
+    \item \textit{Thesis v.3:} Results from analysis 2 documented. Analysis chapter ready.
+    \item \textit{Thesis v.4:} Future work, Conclusion and Abstract, Abstract and Acknowledgements ready.
+    \item \textit{Thesis v.5:} Final delivery. All feedback from supervisor is accounted for.
+\end{enumerate}
+
+
+\begin{figure}[h]
+    \centering
+    \rotatebox{90}{\includegraphics[width=1\textheight]{GanttSplit3.pdf}}
+    \caption{Gantt chart of our planned progression throughout the project.}
+    \label{fig:gantt}
+\end{figure}
+
+%\section{Implementing CA statistical approach}
+%As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period. 
+
+\section{Time management}
 
 
 
