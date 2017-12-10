@@ -93,28 +93,38 @@ NTNU in Gj\{ovik
 %\newpage
 
 \begin{abstract}
-Abstract
-This document provides format and guidelines for the 
-MSc project descriptions. The document has been produced using MikTeX and TeXnicCenter.
+If a user leaves their computer without locking it, any nearby person can simply walk over and take control over the machine as if they were the genuine user.
+If the imposter also has malicious intentions, the genuine user could face serious consequences such as identity theft or blackmailing.
+Keystroke dynamics enables the system to repeatedly authenticate the user in the background by recognizing their personal typing pattern.
+Seen from another perspective, the system can lock the imposter out solely based on detecting unfamiliar typing patterns.
 
-The objective of the abstract is to provide the reader with an understanding of the work to be done and put him in the position to make a 'correct' decision regarding  reading/not reading the report.
-
-The abstract of the project description
-{\em must} include
-\begin{itemize}
-\item a summary of the problem description,
-\item motivation and 
-\item a summary of the planned contribution from the master project in terms of {\em new} results.
-\end{itemize}
-
-\paragraph{Control questions}
-\begin{enumerate}
-\item Does the abstract have a 'reasonable' length?
-\item Is it clear to a non expert (e.g. a typical reader of a newspaper) what problem is addressed?
-\item Does a person that has been working in the field find the text informative?
-\item Do the results that might be obtained have the potential to be interesting to a lot of people? How interesting to how many and why?
-\item Would a decision maker/manager be willing to pay NOK 400.000 to have the project completed (estimated salary costs + overheads) after having read the abstract?  Why/why not?
-\end{enumerate}
+This project aims to combine two such authentication mechanism, namely \textit{continuous} and \textit{periodic} authentication. 
+Continuous authentication (CA) systems react to every single keystroke action performed by the user, though such systems base their decisions on very limited amounts of information derived from a couple of keystrokes at a time.
+Periodic authentication (PA) systems base their decisions on statistics from samples containing a large number of keystrokes, however, they only perform checks when that large number of keystrokes has been collected.
+This gives the imposter a certain period of freedom before being locked out.
+By integrating a PA system into a CA system, the goal is to eliminate the disadvantages of both authentication mechanisms while still benefiting from their advantages, in addition to improving the CA system's detection performance.
+%Abstract
+%This document provides format and guidelines for the 
+%MSc project descriptions. The document has been produced using MikTeX and TeXnicCenter.
+%
+%The objective of the abstract is to provide the reader with an understanding of the work to be done and put him in the position to make a 'correct' decision regarding  reading/not reading the report.
+%
+%The abstract of the project description
+%{\em must} include
+%\begin{itemize}
+%\item a summary of the problem description,
+%\item motivation and 
+%\item a summary of the planned contribution from the master project in terms of {\em new} results.
+%\end{itemize}
+%
+%\paragraph{Control questions}
+%\begin{enumerate}
+%\item Does the abstract have a 'reasonable' length?
+%\item Is it clear to a non expert (e.g. a typical reader of a newspaper) what problem is addressed?
+%\item Does a person that has been working in the field find the text informative?
+%\item Do the results that might be obtained have the potential to be interesting to a lot of people? How interesting to how many and why?
+%\item Would a decision maker/manager be willing to pay NOK 400.000 to have the project completed (estimated salary costs + overheads) after having read the abstract?  Why/why not?
+%\end{enumerate}
 
 \end{abstract}
 
@@ -281,7 +291,7 @@ Therefore, an important problem to solve is to decrease the number of keystrokes
 
 By achieving positive results, this project has the potential to increase the viability of free-text keystroke dynamics in industries and sectors where a higher level of information security is needed or desired, such as the health sector or other critical infrastructures.
 This does not exclude other work environments or even private computers, as any owner of a system where security is essential could benefit from imposters being automatically detected and locked out by typing on the keyboard.
-As improving the CA system's accuracy would lead to imposters being detected more quickly while genuine users are locked out less frequently, it would lead to a higher level of security and a better user experience.
+As improving the CA system's detection performance would lead to imposters being detected more quickly while genuine users are locked out less frequently, it would result in a higher level of security and a better user experience.
 
 %This section should be understandable by everybody including your family and relatives.
 %In particular, it should be understandable to those who will benefit.
@@ -313,8 +323,8 @@ To be able to answer this research question, a number of sub-questions should al
 They can be addressed in any order, as answering one of them does not depend on already having answered the others.
 The sub-questions are as follows:
 \begin{enumerate}
-\item \textit{Which PA system can lead to the best results in terms of detection performance when incorporated into the CA system?} Here we want to know which PA system cause the combined system to catch the most imposters, and how fast it does so. We also want it to mistake genuine users for being imposters as rarely as possible.
-\item \textit{What is the impact on computational performance when incorporating a PA system into the CA system?} Continuous and periodic authentication systems are meant to operate transparently in the background. Therefore, we want every verification process to be performed quickly in order to avoid slowing down the user's machine.
+\item \textit{Which PA system can lead to the best results in terms of detection performance when incorporated into the CA system?} Here we want to know which PA system causes the combined system to catch the most imposters, and how fast it does so. We also want it to mistake genuine users for being imposters as rarely as possible.
+\item \textit{What is the impact on computational performance when incorporating a PA system into the CA system?} Continuous and periodic authentication systems are meant to operate transparently in the background. Therefore, we want every authentication process to be performed quickly in order to avoid slowing down the user's machine.
 \item \textit{How can the decision of the PA system be used by the CA system?} If the PA system believes the current user is an imposter, it can either remove access immediately or cause the CA system to place less trust in the user. We want to know which approach gives the best results.
 
 \end{enumerate}
@@ -339,12 +349,11 @@ The sub-questions are as follows:
 %\end{enumerate}
 
 \section{Planned contributions}
-The indented contribution of this project is to implement a previously proposed CA system \cite{mondal} and extend it with a PA system.
-The PA system to be incorporated into the CA system is more likely to consist of a custom combination of methods from existing research, as opposed to using an entire PA system as it is described by its original authors.
-
+The indented contribution of this project is to implement a previously proposed CA system \cite{mondal} and extend it with a PA system with the aim of improving its detection performance.
 When implemented, the imposter detection performance of both the CA system and the combined CA/PA system will be analyzed, and the results will be presented.
-Furthermore, we will present an analysis of how the CA system's computational performance is affected by the PA extension.
-A comprehensive state-of-the-art overview of CA and PA systems will also be given.
+Furthermore, we will present an analysis of how the CA system's computational performance is affected by the PA extension. 
+We hope to propose a CA system that can react after every keystroke action while also utilizing statistics derived from larger keystroke samples in order to make more accurate decisions.
+%A comprehensive state-of-the-art overview of CA and PA systems will also be given.
 
 %The intended contribution of this project is to extend a previously proposed CA system \cite{mondal} with a PA system in order to improve the imposter detection accuracy of the original system.
 %Software implementations of the combined system will be written in order to test 
@@ -457,6 +466,8 @@ Furthermore, 10\% was used for adjusting the parameters of the algorithms, and t
 There is a significant amount of available literature on PA systems.
 Discussing it all is beyond the scope of this project plan. The focus will therefore mostly be on research achieving viable results using free-text authentication and having potential for being incorporated into the CA system.
 This section will present the various options available to us from literature regarding methods used for PA.
+The PA system we will incorporate into the CA system is likely to consist of a custom combination of methods from existing research, as opposed to using an entire PA system as it is described by its original authors.
+
 Periodic \textit{identification} systems are also included in this section.
 These systems attempt to recognize who the user is without them claiming an identity first.
 While generally having more computationally expensive matching algorithms than authentication systems, they may still have other relevant properties such as feature comparison methods which can also be used for authentication.
@@ -697,6 +708,7 @@ We will also investigate which block size we can use, as well as which n-graph f
 Furthermore, we will review Mondal's \cite{mondal} thesis in order to prepare our own implementation of his CA system.
 
 \section{System setup}
+\label{sec:systemsetup}
 As our research questions are aimed at investigating if the CA system's performance can be improved, our first major task will be to implement the CA system.
 %To be able to truly know if we have improved it in the end, we must reproduce it in the same way it was originally described by Mondal \cite{mondal}.
 %Removed above sentence after feedback.
@@ -746,7 +758,7 @@ Further options will be explored and tested in the project period.
 %Mention how the PA system may interact with the trust model OR make its own decision.
 
 \section{Analysis}
-Our main research question revolves around finding out if the the performance of the original CA system can be improved by incorporating periodic authentication.
+Our main research question revolves around finding out if the performance of the original CA system can be improved by incorporating periodic authentication.
 For this we will perform a \textit{quantitative} analysis \cite{leedy_ormrod_2013}.
 More specifically, we can test the performance of the combined system by means of a leave-one-out cross validation test, which Mondal also did in his experiment.
 The dataset includes 53 users, which means that for every genuine user we can test the performance using 52 imposters.
@@ -890,7 +902,7 @@ A number of milestones have been set for each of these deliverables, which can b
 \label{sec:milestones-deliverables-software}
 Developing the software implementations of the CA/PA system is important for being able to answer our research question.
 The implementations are needed for producing the data we are to analyze.
-A total of four milestones has been set for this deliverable:
+A total of four milestones has been set for this deliverable where the software will be presented to the supervisor:
 
 \begin{enumerate}
     \item \textit{SA-1 implemented:} Having the implementation of the CA system's statistical approach ready is this deliverable's first milestone, as it sets up the next activity which is extending it with a PA system.
@@ -911,14 +923,14 @@ Our thesis milestones are as follows:
     \item \textit{Thesis v.1:} Introduction, Background and Related work ready for delivery.
     \item \textit{Thesis v.2:} The combined CA/PA system's architecture is presented in the Authentication System chapter. Results from first analysis documented.
     \item \textit{Thesis v.3:} Results from analysis 2 documented. Analysis chapter ready.
-    \item \textit{Thesis v.4:} Future work, Conclusion and Abstract, Abstract and Acknowledgements ready.
+    \item \textit{Thesis v.4:} Future work, Conclusion, Abstract and Acknowledgements ready.
     \item \textit{Thesis v.5:} Final delivery. All feedback from supervisor is accounted for.
 \end{enumerate}
 
 
 \begin{figure}[h]
     \centering
-    \rotatebox{90}{\includegraphics[width=1\textheight]{GanttSplit3.pdf}}
+    \rotatebox{90}{\includegraphics[width=1\textheight]{Draft4.pdf}}
     \caption{Gantt chart of our planned progression throughout the project.}
     \label{fig:gantt}
 \end{figure}
@@ -927,10 +939,12 @@ Our thesis milestones are as follows:
 %As mentioned in \Cref{sec:related-CA}, Mondal's \cite{mondal} dataset will be used in this project, allowing us to begin implementing his CA system at an early point of the project period. 
 
 \section{Time management}
+\label{sec:milestones-time}
 We have made estimations of time needed for the planned activities in this project, and these can be found in \Cref{tab:hours}.
 The estimations were made with 900 hours as a starting point, where approximately eight hours are spent on the project every monday through friday, including holidays.
 If we begin to lag behind schedule, we can extend our working days by a number of hours and/or use weekends for catching up, increasing the total number of hours spent on the project.
-Seminars will are also not included, so the total hours will increase slightly depending on the length of the seminars.
+Seminars are also not included, so the total hours will increase slightly depending on the length of the seminars.
+A Gantt chart of our planned progression including milestones can be found in \Cref{fig:gantt}.
 
 \begin{table}[h]
 \centering
@@ -941,13 +955,13 @@ Seminars will are also not included, so the total hours will increase slightly d
 \textit{Literature study}     & \begin{tabular}[c]{@{}l@{}}Review the most relevant CA and PA systems, \\ identify relevant work not yet covered.\end{tabular}                                                                                                                                                                                                                          & 02/01           & 11/01         & 50             \\ \hline
 \textit{Implement CA (SA-1)}  & \begin{tabular}[c]{@{}l@{}}Implement SA-1 as described in \Cref{sec:related-CA}.\\We plan to implement all the software in MATLAB\\ due to its abundance of machine learning\\toolboxes, however this may change.\end{tabular}                                                                                                                                                                        & 15/01           & 18/01         & 25             \\ \hline
 \textit{Extend SA-1 with PA}  & \begin{tabular}[c]{@{}l@{}}Implement PA system and incorporate it into the\\ CA system. As the exact methods to be used\\ in the PA system is yet to be decided, a larger \\ time frame is set for this activity to prepare for a\\ potentially complicated solution.\end{tabular}                                                                      & 19/01           & 14/02         & 150            \\ \hline
-\textit{Analysis 1}           & \begin{tabular}[c]{@{}l@{}}Analyze the performance of the first \\ implementation of the combined system. \\ Perform cross validation tests and measure \\ ANIA/ANGA and undetected imposters. Also \\ measure the impact on processing speed. Make\\ changes to methods, variables and CA/PA \\ interaction to find the best performance.\end{tabular} & 15/02           & 07/03         & 125            \\ \hline
+\textit{Analysis 1}           & \begin{tabular}[c]{@{}l@{}}Analyze the performance of the first \\ implementation of the combined system. \\ Perform cross validation tests, measure \\ ANIA/ANGA and undetected imposters. Also \\ measure the impact on processing speed. Make\\ changes to methods, variables and CA/PA \\ interaction to find the best performance.\end{tabular} & 15/02           & 07/03         & 125            \\ \hline
 \textit{Implement CA (VP-3)}  & \begin{tabular}[c]{@{}l@{}}Develop the machine learning approach of \\ the CA system. Due to the complicated nature\\ of this approach, a large time frame is given.\end{tabular}                                                                                                                                                                       & 08/03           & 26/03         & 100            \\ \hline
 \textit{Extend VP-3 with PA}  & \begin{tabular}[c]{@{}l@{}}Incorporate PA system into the machine learning\\ approach of the CA system. Depending on the PA\\ system, the interaction with the machine learning\\ approach may be hard to implement. If not, more\\ time is available for analysis.\end{tabular}                                                                        & 27/03           & 12/04         & 100            \\ \hline
 \textit{Analysis 2}           & \begin{tabular}[c]{@{}l@{}}As Analysis 1. More time is given due to the \\ complexity of changing machine learning\\ variables.\end{tabular}                                                                                                                                                                                                            & 13/04           & 10/05         & 160            \\ \hline
 \textit{Write MSc thesis}     & \begin{tabular}[c]{@{}l@{}}This is a continuous process beginning at the start\\ of the project period and lasting until the hand-in\\ date.\end{tabular}                                                                                                                                                                                               & 03/01           & 01/06         & 115            \\ \hline
 \textit{Prepare presentation} & \begin{tabular}[c]{@{}l@{}}When the thesis is delivered, we have about a \\ week and a half for preparing the presentation. \\ There is a weekend of dead space here which \\ is likely to be used.\end{tabular}                                                                                                                                        & 04/06           & 12/06         & 75             \\ \hline
-\\\textbf{Total hours}          & \textbf{Excluding seminars}&& & \textbf{900} \\ \\\hline
+\\\textbf{Total hours}          & Excluding seminars. && & \textbf{900} \\ \\\hline
 \end{tabular}
 }
 \caption{Estimated hours needed for activies.}
@@ -989,15 +1003,41 @@ Seminars will are also not included, so the total hours will increase slightly d
 %down the task into a lot of small tasks.
 %
 \chapter{Feasibility study}
-An analysis of why it is likely that the desired
-results can be produced within the given time and
-resource bounds.  This may include a description of
-\begin{itemize}
-\item similar projects completed by others and their 'resource consumption',
-\item an attempt to answer parts of the research questions
-\item the 'difficult' elements of the work and an explanation of why/how these problems can be solved.  
-Alternatively you can explain an 'approximate' solution.
-\end{itemize}
+We do not yet know whether the CA system's performance will be improved by the PA extension, as the goal of the project is to answer this question.
+We do however have strong reason to believe that implementing a combined CA/PA system is possible.
+This is due to the separate types of authentication systems already being implemented in literature, as discussed in \Cref{chap:related}.
+We have also proposed a possible architecture of the combined system in \Cref{sec:systemsetup} which further strengthens our belief of its feasibility.
+A more pressing concern is therefore to discuss why results should be attainable within the limited time period.
+
+It is not common practice for authors of PA (or CA) systems to state the amount of time used in their projects, with the exception of time spent on data collection.
+It is therefore not easy to identify projects with similar time frames to ours.
+What we can do is identify parts of our project that are expected to be difficult, and discuss how we can overcome problems associated with those parts.
+
+We expect that implementing VP-3, extending it with a PA system and analyzing its performance will be one of the more challenging tasks of the project, due to having limited experience with machine learning and there being three different machine learning classifiers involved.
+We mentioned in \Cref{sec:milestones-time} that we are likely to develop the software in MATLAB to benefit from its machine learning toolboxes, which can ease this issue.
+
+Developing the PA system is also a task that could cause issues, depending on its complexity.
+We have taken a precaution when planning the order of activities which can ensure that results still can be achieved even if we face major unexpected issues with either of the mentioned activities.
+If we are unable to implement the machine learning approach, a compromise could be to reduce complexity by implementing a single machine learning algorithm as opposed to a multi-classifier fusion. 
+In the worst case we can still fall back to the statistical approach and expand it, for example by incorporating another PA system and comparing how the two PA systems impact the CA system.
+Choosing a different PA system is also a viable solution if we face issues incorporating PA into the CA statistical approach, as this issue would occur in the early phases of the project.
+
+
+%Therefore split into two parts
+
+
+%Matlab toolboxes, examples?
+%
+
+%An analysis of why it is likely that the desired
+%results can be produced within the given time and
+%resource bounds.  This may include a description of
+%\begin{itemize}
+%\item similar projects completed by others and their 'resource consumption',
+%\item an attempt to answer parts of the research questions
+%\item the 'difficult' elements of the work and an explanation of why/how these problems can be solved.  
+%Alternatively you can explain an 'approximate' solution.
+%\end{itemize}
 
 \chapter{Risk analysis}
 This chapter contains a risk analysis for the project period.
