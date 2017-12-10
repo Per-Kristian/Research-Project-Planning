@@ -100,7 +100,7 @@ Seen from another perspective, the system can lock the imposter out solely based
 
 This project aims to combine two such authentication mechanism, namely \textit{continuous} and \textit{periodic} authentication. 
 Continuous authentication (CA) systems react to every single keystroke action performed by the user, though such systems base their decisions on very limited amounts of information derived from a couple of keystrokes at a time.
-Periodic authentication (PA) systems base their decisions on statistics from samples containing a large number of keystrokes, however, they only perform checks when that large number of keystrokes has been collected.
+Periodic authentication (PA) systems base their decisions on statistics from samples containing a large number of keystrokes, however, they only perform checks after that large number of keystrokes has been collected.
 This gives the imposter a certain period of freedom before being locked out.
 By integrating a PA system into a CA system, the goal is to eliminate the disadvantages of both authentication mechanisms while still benefiting from their advantages, in addition to improving the CA system's detection performance.
 %Abstract
@@ -879,13 +879,13 @@ List of Figures\\
 \textbf{Related work}\\
 \indent Continuous authentication\\
 \indent Periodic authentication\\
-\textbf{Authentication system}\\
+\textbf{Proposed system}\\
 \indent Design\\
 \indent Modules\\
 \indent PA/CA interaction mechanism\\
 \textbf{Analysis}\\
-\indent Performance analysis using CA statistical approach\\
-\indent Performance analysis using CA machine learning approach\\
+\indent Analysis of statistical approach\\
+\indent Analysis of machine learning approach\\
 \indent Discussion\\
 \textbf{Future work}\\
 \textbf{Conclusion}\\
@@ -921,7 +921,7 @@ Our thesis milestones are as follows:
 
 \begin{enumerate}
     \item \textit{Thesis v.1:} Introduction, Background and Related work ready for delivery.
-    \item \textit{Thesis v.2:} The combined CA/PA system's architecture is presented in the Authentication System chapter. Results from first analysis documented.
+    \item \textit{Thesis v.2:} The combined CA/PA system's architecture is presented in the "Proposed system" chapter. Results from the first analysis documented.
     \item \textit{Thesis v.3:} Results from analysis 2 documented. Analysis chapter ready.
     \item \textit{Thesis v.4:} Future work, Conclusion, Abstract and Acknowledgements ready.
     \item \textit{Thesis v.5:} Final delivery. All feedback from supervisor is accounted for.
@@ -930,7 +930,7 @@ Our thesis milestones are as follows:
 
 \begin{figure}[h]
     \centering
-    \rotatebox{90}{\includegraphics[width=1\textheight]{Draft4.pdf}}
+    \rotatebox{90}{\includegraphics[width=1\textheight]{FinalGanttSplit.pdf}}
     \caption{Gantt chart of our planned progression throughout the project.}
     \label{fig:gantt}
 \end{figure}
@@ -952,14 +952,14 @@ A Gantt chart of our planned progression including milestones can be found in \C
 \begin{tabular}{lllll}
 \hline
 \textbf{Activity}             & \textbf{Description}                                                                                                                                                                                                                                                                                                                                    & \textbf{Starts} & \textbf{Ends} & \textbf{Hours} \\ \hline
-\textit{Literature study}     & \begin{tabular}[c]{@{}l@{}}Review the most relevant CA and PA systems, \\ identify relevant work not yet covered.\end{tabular}                                                                                                                                                                                                                          & 02/01           & 11/01         & 50             \\ \hline
-\textit{Implement CA (SA-1)}  & \begin{tabular}[c]{@{}l@{}}Implement SA-1 as described in \Cref{sec:related-CA}.\\We plan to implement all the software in MATLAB\\ due to its abundance of machine learning\\toolboxes, however this may change.\end{tabular}                                                                                                                                                                        & 15/01           & 18/01         & 25             \\ \hline
-\textit{Extend SA-1 with PA}  & \begin{tabular}[c]{@{}l@{}}Implement PA system and incorporate it into the\\ CA system. As the exact methods to be used\\ in the PA system is yet to be decided, a larger \\ time frame is set for this activity to prepare for a\\ potentially complicated solution.\end{tabular}                                                                      & 19/01           & 14/02         & 150            \\ \hline
-\textit{Analysis 1}           & \begin{tabular}[c]{@{}l@{}}Analyze the performance of the first \\ implementation of the combined system. \\ Perform cross validation tests, measure \\ ANIA/ANGA and undetected imposters. Also \\ measure the impact on processing speed. Make\\ changes to methods, variables and CA/PA \\ interaction to find the best performance.\end{tabular} & 15/02           & 07/03         & 125            \\ \hline
+\textit{Literature study}     & \begin{tabular}[c]{@{}l@{}}Review the most relevant CA and PA systems, \\ identify relevant work not yet covered.\end{tabular}                                                                                                                                                                                                                          & 02/01           & 18/01         & 50             \\ \hline
+\textit{Implement CA (SA-1)}  & \begin{tabular}[c]{@{}l@{}}Implement SA-1 as described in \Cref{sec:related-CA}.\\We plan to implement all the software in MATLAB\\ due to its abundance of machine learning\\toolboxes, however this may change.\end{tabular}                                                                                                                                                                        & 02/01           & 18/01         & 25             \\ \hline
+\textit{Extend SA-1 with PA}  & \begin{tabular}[c]{@{}l@{}}Implement PA system and incorporate it into the\\ CA system. As the exact methods to be used\\ in the PA system is yet to be decided, a larger \\ time frame is set for this activity to prepare for a\\ potentially complicated solution.\end{tabular}                                                                      & 15/01           & 14/02         & 150            \\ \hline
+\textit{Analysis 1}           & \begin{tabular}[c]{@{}l@{}}Analyze the performance of the first \\ implementation of the combined system. \\ Perform cross validation tests, measure \\ ANIA/ANGA and undetected imposters. Also \\ measure the impact on processing speed. Make\\ changes to methods, variables and CA/PA \\ interaction to find the best performance.\end{tabular} & 01/02           & 07/03         & 125            \\ \hline
 \textit{Implement CA (VP-3)}  & \begin{tabular}[c]{@{}l@{}}Develop the machine learning approach of \\ the CA system. Due to the complicated nature\\ of this approach, a large time frame is given.\end{tabular}                                                                                                                                                                       & 08/03           & 26/03         & 100            \\ \hline
-\textit{Extend VP-3 with PA}  & \begin{tabular}[c]{@{}l@{}}Incorporate PA system into the machine learning\\ approach of the CA system. Depending on the PA\\ system, the interaction with the machine learning\\ approach may be hard to implement. If not, more\\ time is available for analysis.\end{tabular}                                                                        & 27/03           & 12/04         & 100            \\ \hline
-\textit{Analysis 2}           & \begin{tabular}[c]{@{}l@{}}As Analysis 1. More time is given due to the \\ complexity of changing machine learning\\ variables.\end{tabular}                                                                                                                                                                                                            & 13/04           & 10/05         & 160            \\ \hline
-\textit{Write MSc thesis}     & \begin{tabular}[c]{@{}l@{}}This is a continuous process beginning at the start\\ of the project period and lasting until the hand-in\\ date.\end{tabular}                                                                                                                                                                                               & 03/01           & 01/06         & 115            \\ \hline
+\textit{Extend VP-3 with PA}  & \begin{tabular}[c]{@{}l@{}}Incorporate PA system into the machine learning\\ approach of the CA system. Depending on the PA\\ system, the interaction with the machine learning\\ approach may be hard to implement. If not, more\\ time is available for analysis.\end{tabular}                                                                        & 22/03           & 12/04         & 100            \\ \hline
+\textit{Analysis 2}           & \begin{tabular}[c]{@{}l@{}}As Analysis 1. More time is given due to the \\ complexity of changing machine learning\\ variables.\end{tabular}                                                                                                                                                                                                            & 04/04           & 10/05         & 160            \\ \hline
+\textit{Write MSc thesis}     & \begin{tabular}[c]{@{}l@{}}This is a continuous process beginning at the start\\ of the project period and lasting until the hand-in\\ date.\end{tabular}                                                                                                                                                                                               & 02/01           & 01/06         & 115            \\ \hline
 \textit{Prepare presentation} & \begin{tabular}[c]{@{}l@{}}When the thesis is delivered, we have about a \\ week and a half for preparing the presentation. \\ There is a weekend of dead space here which \\ is likely to be used.\end{tabular}                                                                                                                                        & 04/06           & 12/06         & 75             \\ \hline
 \\\textbf{Total hours}          & Excluding seminars. && & \textbf{900} \\ \\\hline
 \end{tabular}
@@ -1006,7 +1006,7 @@ A Gantt chart of our planned progression including milestones can be found in \C
 We do not yet know whether the CA system's performance will be improved by the PA extension, as the goal of the project is to answer this question.
 We do however have strong reason to believe that implementing a combined CA/PA system is possible.
 This is due to the separate types of authentication systems already being implemented in literature, as discussed in \Cref{chap:related}.
-We have also proposed a possible architecture of the combined system in \Cref{sec:systemsetup} which further strengthens our belief of its feasibility.
+We have also proposed a possible architecture of the combined system in \Cref{fig:system-diagram} in \Cref{sec:systemsetup} which further strengthens our belief of its feasibility.
 A more pressing concern is therefore to discuss why results should be attainable within the limited time period.
 
 It is not common practice for authors of PA (or CA) systems to state the amount of time used in their projects, with the exception of time spent on data collection.
