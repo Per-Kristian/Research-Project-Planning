@@ -849,8 +849,8 @@ Since we are incorporating PA into an existing CA system, the focus will be on m
 \section{Resources}
 \label{sec:milestones-resources}
 The only resource we will need is the dataset from Mondal's PhD thesis \cite{mondal}. The project's supervisor is already in possession of this dataset.
+Access to the Biometrics Laboratory has been granted for the duration of the project.
 No other resources are required, as the work will be done on personal computers.
-A request will be made for a dedicated workspace on campus, however this is by no means mandatory.
 
 \section{Preliminary table of contents}
 \label{sec:milestones-toc}
@@ -1047,22 +1047,24 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 
 \begin{table}[H]
 \scriptsize
-\begin{tabular}{c| p{1.3cm}|p{1.5cm}|p{0.94cm}|p{2.5cm}|p{2.2cm}|p{1.7cm}|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c| p{1.3cm}|p{1.5cm}|p{1.1cm}|p{2.37cm}|p{2.2cm}|p{1.7cm}|}
 \hhline{~|------}
 & \bf Identifier & Impl. CA & Illness & Impl. PA & Injury & Beh. sched.\\ \hhline{~|------|}
-\bf & \bf Undesired event & Trouble implementing CA & Illness lasting a week or longer & Trouble incorporating a PA system & Physical injury preventing progress & Falling far behind schedule\\ \hhline{~|------|} 
+\bf & \bf Undesired event & Trouble implementing CA & Illness lasting a week or longer during project period & Trouble incorporating a PA system & Physical injury preventing progress & Falling far behind schedule\\ \hhline{~|------|} 
 & \bf Probable Causes & Lack of understanding regarding original CA system; software bugs & Infection; other & Mathematical complexity; inexperience with Matlab & Severely injuring both hands or arms in a sport climbing accident & Too large workload; poor time management; burnout\\ \hhline{~|------|}
-\multirow{3}{*}{\rotatebox{90}{\tiny INITIAL\,}} & \bf Probability & 3 & 2 & 5 & 1 & 3  \\ \hhline{~|------|}
+\multirow{3}{*}{\rotatebox{90}{\tiny INITIAL\,}} & \bf Probability & 3 & 2 & 4 & 1 & 3  \\ \hhline{~|------|}
 & \bf Severity & 4 & 2 & 2 & 4 & 3 \\ \hhline{~|------|}
-& \bf Risk Level & \cellcolor{red!50} & \cellcolor{green!50} & \cellcolor{red!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50}\\ \hhline{~|------|}
+& \bf Risk Level & \cellcolor{red!50} & \cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50}\\ \hhline{~|------|}
 & \bf Prevention/ Remediation& Ask for guidance from supervisor or the original author if necessary & None & Ask for guidance from supervisor; study Matlab implementations of machine learning and statistical models early in project period; prioritize another PA system & Only use highly experienced belayers during the project period; avoid climbing high-risk routes; request extension of deadline if injury occurs & Discuss which parts of the project can be omitted; extend working hours; socialize to prevent burnout\\ \hhline{~|------|}
-\multirow{3}{*}{\rotatebox{90}{\tiny RESIDUAL\,}}& \bf Probability & 3 & 2 & 4 & 1 & 2\\ \hhline{~|------|}
+\multirow{3}{*}{\rotatebox{90}{\tiny RESIDUAL\,}}& \bf Probability & 3 & 2 & 3 & 1 & 2\\ \hhline{~|------|}
 & \bf Severity & 1 & 2 & 2 & 3 & 2\\ \hhline{~|------|}
 & \bf Risk Level & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{green!50} & \cellcolor{green!50}\\
 \hhline{~|------|}
 
 %add more rows as required
 \end{tabular}
+}
 \caption{Risk analysis for project period}
 \label{tab:risk-analysis}
 \end{table}
@@ -1070,6 +1072,7 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 \begin{table}[H]
 \centering
 \scriptsize
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{|m{1.75cm}|m{1.75cm}|m{1.75cm}| m{1.75cm} |m{1.75cm}| m{1.75cm}|m{0cm}}
 \hhline{|------|} \bf Probability/ Impact & \bf 1-Very unlikely & \bf 2-Unlikely & \bf 3-Possible & \bf 4-Likely & \bf 5-Very likely & \\[10pt]
 
@@ -1077,11 +1080,12 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 
 \hhline{|------|} \bf 3-Critical &\cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} \centering Beh. sched. & \cellcolor{red!50} &\cellcolor{red!50} & \\ [10pt]
 
-\hhline{|------|} \bf 2-Major & \cellcolor{green!50} & \cellcolor{green!50} \centering Illness & \cellcolor{yellow!50} &\cellcolor{yellow!50} &\cellcolor{red!50} \centering Impl. PA & \\[10pt]
+\hhline{|------|} \bf 2-Major & \cellcolor{green!50} & \cellcolor{green!50} \centering Illness & \cellcolor{yellow!50} &\cellcolor{yellow!50} \centering Impl. PA &\cellcolor{red!50}  & \\[10pt]
 
 \hhline{|------|} \bf 1-Minor & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} & \\ [10pt]
 \hhline{|------|}
-\end{tabular} \\
+\end{tabular} 
+}
 \caption{Initial risk matrix}
 \label{tab:initial-risk}
 \end{table}
@@ -1089,8 +1093,6 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{Residual risk matrix}
-\label{tab:residual-risk}
 \begin{tabular}{|m{1.75cm}|m{1.75cm}|m{1.75cm}| m{1.75cm} |m{1.75cm}| m{1.75cm}|m{0cm}}
 \hhline{|------|} \bf Probability/ Impact & \bf 1-Very unlikely & \bf 2-Unlikely & \bf 3-Possible & \bf 4-Likely & \bf 5-Very likely & \\[10pt]
 
@@ -1098,25 +1100,25 @@ The colors used in the risk analysis are explained in \autoref{tab:colour-legend
 
 \hhline{|------|} \bf 3-Critical &\cellcolor{green!50} \centering Injury & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} & \\ [10pt]
 
-\hhline{|------|} \bf 2-Major & \cellcolor{green!50} & \cellcolor{green!50} \centering Beh. sched.; Illness & \cellcolor{yellow!50} &\cellcolor{yellow!50} \centering Impl. PA &\cellcolor{red!50} & \\[10pt]
+\hhline{|------|} \bf 2-Major & \cellcolor{green!50} & \cellcolor{green!50} \centering Beh. sched.; Illness & \cellcolor{yellow!50} \centering Impl. PA &\cellcolor{yellow!50} &\cellcolor{red!50} & \\[10pt]
 
 \hhline{|------|} \bf 1-Minor & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} \centering Impl. CA &\cellcolor{yellow!50} &\cellcolor{yellow!50} & \\ [10pt]
 \hhline{|------|}
 \end{tabular} \\
+\caption{Residual risk matrix}
+\label{tab:residual-risk}
 \end{table}
 
 The analysis includes events with significant probability and impact.
 As seen in tables 1-3, there are no residual risks with red risk level.
 The event with a yellow residual risk level is Impl. PA.
 While the impact of this event is not critical, a high probability remains.
-Incorporating PA systems into the CA system is the main task of the master thesis, and a high probability of having trouble with this is only natural.
+Incorporating the PA system into the CA system is one of the main tasks of the master thesis, and a high probability of having trouble with this is only natural.
 Therefore, trying to remediate this event any further is part of the project itself.
 
 \begin{table}[H]
 \centering
 %\scriptsize
-\caption{Risk matrix color legend}
-\label{tab:colour-legend}
 \begin{tabular}{|p{2cm}|p{10cm}|}
 \hline \bf Colour & \bf Legend \\
 \hline \cellcolor{red! 50} & Not acceptable - Risk reduction required \\ [10pt]
@@ -1124,30 +1126,30 @@ Therefore, trying to remediate this event any further is part of the project its
 \hline \cellcolor{green! 50} & Acceptable. \\ [10pt]
 \hline
 \end{tabular}
+\caption{Risk matrix color legend}
+\label{tab:colour-legend}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Probability classes legend}
-\label{tab:probability-classes}
 \begin{tabular}{ p{2cm} p{3cm} p{8cm}}
 \hline \bf Rank & \bf Probability class & \bf Description \\
-\hline 1 & Very unlikely & Below 10 \% chance of occurring \\
-2 & Unlikely & Between 10 - 25 \% chance of occurring \\
+\hline 1 & Very unlikely & Below 5 \% chance of occurring \\
+2 & Unlikely & Between 5 - 25 \% chance of occurring \\
 3 & Possible & Between 25 - 75 \% chance of occurring \\
-4 & Likely & Between 75 - 90 \% chance of occurring \\
-5 & Very likely & Over 90\% chance of occurring \\
+4 & Likely & Between 75 - 95 \% chance of occurring \\
+5 & Very likely & Over 95\% chance of occurring \\
 
 \hline
 
 \end{tabular}
+\caption{Probability classes legend}
+\label{tab:probability-classes}
 \end{table}
 
 %Severity Classes Legend
 \begin{table}[H]
 \centering
-\caption{Impact classes legend}
-\label{tab:impact-classes}
 \begin{tabular}{ p{2cm} p{3cm} p{8cm}}
 \hline \bf Rank & \bf Severity class & \bf Description \\
 
@@ -1157,6 +1159,8 @@ Therefore, trying to remediate this event any further is part of the project its
 1 & Minor & Events lead to smaller parts of minimal importance being negatively affected or omitted.\\
 \hline
 \end{tabular}
+\caption{Impact classes legend}
+\label{tab:impact-classes}
 \end{table}
 
 
@@ -1168,23 +1172,24 @@ Therefore, trying to remediate this event any further is part of the project its
 
 
 \chapter{Ethical and legal considerations}
-Doing research in the biometrics field can bring ethical problems and legal considerations as it often involves collecting highly sensitive information from volunteers contributing to the project.
-This is especially true for unconstrained free-text keystroke dynamics, as the data collected involves not only measurement of the biometric trait, but also information that can be analyzed to uncover the semantics and context of what the participants typed on their private computers as long as the BeLT software was recording.
+Doing research in the biometrics field brings ethical problems and legal considerations, as it often involves collecting highly sensitive information from volunteers contributing to the project.
+This is especially true for unconstrained free-text keystroke dynamics, as the data collected involves not only measurements of the biometric trait, but also information that can be analyzed to uncover the semantics and context of what the participants typed on their private computers. 
 
-BeLT's automatic password censoring is one measure that decreases the amount of highly sensitive information collected to a certain degree.
-Still, depending on the software, some password fields may not have been detected by BeLT, resulting in keystrokes involved in passwords being recorded without censoring. 
-Even if all passwords were censored, an abundance of information was recorded, and sensitive information is bound to be present in the database.
+The dataset to be used \cite{mondal} was collected from consenting participants following the guidelines of the \textit{Norwegian Data Protection Authority} in order to comply with the Personal Data Act of 2000\footnote{https://www.datatilsynet.no/en/regulations-and-tools/regulations-and-decisions/norwegian-privacy-law/personal-data-act/}.
+Our handling of the data will also be in accordance with this act, and we will also follow guidelines to ensure compliance.
+The supervisor possesses the dataset as stated in \Cref{sec:milestones-resources}, and it can be used for research at NTNU.
 
-If new data will be collected for this project, all of this information must be fully understood by participants before they consent.
-In the case of us using a database from previous research, participants have already been informed of their data being used for research purposes and have given their consent.
+The data was collected using a logging tool which automatically censored passwords when logging the keystrokes. 
+This is one measure that decreases the amount of highly sensitive information collected to a certain degree.
+Still, some password fields may not have been detected by the tool, resulting in keystrokes involved in passwords being recorded without censoring. 
+Even if all passwords were censored, a very large amount of keystroke data was recorded, and some forms of sensitive information is bound to be present in the database.
 
-Regardless of whether which database we use, we will not open raw samples unless it is necessary for project progression.
-If we do access raw samples, we will not analyze the data for the purpose of uncovering what the participant was writing.
-In case any sensitive information written by a participant is uncovered, this information will by no means ever be shared with anyone who are not members of the project (being the author and the supervisor).
-If an excerpt of a sample including sensitive information is to be included in the thesis paper as an example, any and all sensitive information will be manually censored beforehand.
+Our analysis will be automated, and we will not visually inspect raw keystroke samples unless it is absolutely necessary for project progression.
+If we do access raw samples, we will refrain from analyzing the semantics of the data, i.e. what was being written.
+No sensitive information derived from raw samples will be shared with anyone who are not members of the project (being the author and the supervisor), and it will not be presented in the MSc thesis.
 
-Under no circumstances will access to the database be given to anybody not involved in the project.
-When the project period is over, the database and any material containing sensitive information will be removed from the project members' devices, and stored on a safe university server for future research purposes.
+Under no circumstances will access to the dataset or a subset of its data be given to any third party.
+When the project period is over, all data from the dataset will be removed from the project members' devices, and stored on a secure university server for future research purposes.
 
 
 %The purpose of this chapter is to convince the
